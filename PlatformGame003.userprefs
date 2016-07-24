@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\api\sprites\CSprite.cs">
+    <Files>
+      <File FileName="Assets\Script\game\entities\CPlayer.cs" Line="19" Column="11" />
+      <File FileName="Assets\Script\api\sprites\CSprite.cs" Line="23" Column="18" />
+      <File FileName="Assets\Script\api\sprites\CAnimatedSprite.cs" Line="21" Column="12" />
+      <File FileName="Assets\Script\api\sprites\CAnim.cs" Line="103" Column="31" />
+      <File FileName="Assets\Script\api\sprites\CGameObject.cs" Line="21" Column="18" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

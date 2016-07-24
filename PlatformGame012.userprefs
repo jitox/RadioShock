@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\game\enemies\CCannon.cs">
+    <Files>
+      <File FileName="Assets\Script\api\math\CVector.cs" Line="30" Column="3" />
+      <File FileName="Assets\Script\api\sprites\CSprite.cs" Line="161" Column="18" />
+      <File FileName="Assets\Script\game\enemies\CCannon.cs" Line="10" Column="35" />
+      <File FileName="Assets\Script\api\entities\CGenericEnemy.cs" Line="4" Column="33" />
+      <File FileName="Assets\Script\game\entities\CPlayer.cs" Line="37" Column="3" />
+      <File FileName="Assets\Script\game\states\CLevelState.cs" Line="120" Column="21" />
+      <File FileName="Assets\Script\api\sprites\CAnimatedSprite.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\game\entities\CAsteroid.cs" Line="4" Column="35" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\game\entities\CPlayerBullet.cs">
+    <Files>
+      <File FileName="Assets\Script\game\states\CLevelState.cs" Line="63" Column="22" />
+      <File FileName="Assets\Script\game\states\CMainMenuState.cs" Line="45" Column="4" />
+      <File FileName="Assets\Script\game\entities\CPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\game\entities\CPlayerBullet.cs" Line="12" Column="34" />
+      <File FileName="Assets\Script\game\managers\CBulletManager.cs" Line="4" Column="36" />
+      <File FileName="Assets\Script\api\sprites\CManager.cs" Line="62" Column="34" />
+      <File FileName="Assets\Script\api\sprites\CGameObject.cs" Line="218" Column="1" />
+      <File FileName="Assets\Script\api\math\CMath.cs" Line="34" Column="76" />
+      <File FileName="Assets\Script\game\entities\CAsteroid.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
