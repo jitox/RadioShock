@@ -9,7 +9,7 @@ public class CGame : MonoBehaviour
 	private CCamera mCamera;
 	private CPlayerNew mPlayer;
 	private CShip mShip;
-
+    //Test commit
 	void Awake()
 	{
 		if (mInstance != null) 
