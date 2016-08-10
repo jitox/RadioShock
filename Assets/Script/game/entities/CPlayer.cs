@@ -51,7 +51,7 @@ public class CPlayer : CAnimatedSprite
 
 		setOldXYPosition();
 
-		/*
+        /*
 
 
 
@@ -66,8 +66,8 @@ public class CPlayer : CAnimatedSprite
 		mShipSprite.setSortingLayerName ("Player");
 
 		setState(STATE_MOVE);*/
-
-		render ();
+       
+        render ();
 	}
 
 	override public void update()

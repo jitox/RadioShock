@@ -14,8 +14,8 @@ public class CPlayerNew : CAnimatedSprite
     private const int JUMP_SPEED = -500;
     private int GRAVITY = 900;
 
-    private const int PLAYER_WIDTH = 64;
-    private const int PLAYER_HEIGHT = 74;
+    private const int PLAYER_WIDTH = 72;
+    private const int PLAYER_HEIGHT = 48;
 
     // Variables para chequeo de colisiones con los tiles.
     private bool tileTopLeft;
@@ -35,8 +35,9 @@ public class CPlayerNew : CAnimatedSprite
 
     public CPlayerNew()
     {
-        setFrames(Resources.LoadAll<Sprite>("Sprites/player"));
-
+        //setFrames(Resources.LoadAll<Sprite>("Sprites/player"));
+        setFrames(Resources.LoadAll<Sprite>("Sprites/player/chispita"));
+        gotoAndStop(1);
         setSortingLayerName("Player");
         setVelX(250);
         setXY(0, 600);
@@ -48,8 +49,12 @@ public class CPlayerNew : CAnimatedSprite
 
         setState(STATE_NORMAL);
 
-        setOldXYPosition();      
-          render();
+        setOldXYPosition();
+        //crateTrail(CGameConstants.COLOR_RED);
+        //ChangeTrailTime(.05f);
+        
+        
+        render();
     }
 
     override public void update()
@@ -204,7 +209,7 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() == STATE_NORMAL)
         {
 
-            initAnimation(2, 9, 10, true);
+            //initAnimation(2, 9, 10, true);
             stopMove();
             midJump = false;
         }
@@ -212,7 +217,7 @@ public class CPlayerNew : CAnimatedSprite
         else if (getState() == STATE_JUMPING)
         {
             // TODO: Arreglar la animacion.
-            initAnimation(10, 17, 10, false);
+            //initAnimation(10, 17, 10, false);
             //setVelY (JUMP_SPEED);
             GRAVITY *= -1;
             setFlip(!getFlip());
@@ -220,7 +225,7 @@ public class CPlayerNew : CAnimatedSprite
         }
         else if (getState() == STATE_FALLING)
         {
-            gotoAndStop(17);
+           // gotoAndStop(17);
             stopMove();
             setAccelY(GRAVITY);
         }

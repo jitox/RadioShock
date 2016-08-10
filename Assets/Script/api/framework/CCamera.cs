@@ -21,7 +21,7 @@ public class CCamera : CGameObject
 		if (mGameObjectToFollow != null) 
 		{
 			setX (mGameObjectToFollow.getX () - WIDTH / 2);
-			setY (mGameObjectToFollow.getY () - HEIGHT / 2);
+			//setY (mGameObjectToFollow.getY () - HEIGHT / 2);
 		} 
 		else 
 		{
