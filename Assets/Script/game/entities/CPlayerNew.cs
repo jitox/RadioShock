@@ -10,7 +10,7 @@ public class CPlayerNew : CAnimatedSprite
     private bool midJump = false;
 
 
-    private const int SPEED = 240;
+    private const int SPEED = 480;
     private const int JUMP_SPEED = -500;
     private int GRAVITY = 900;
 
