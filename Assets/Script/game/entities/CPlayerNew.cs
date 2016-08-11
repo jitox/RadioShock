@@ -68,6 +68,13 @@ public class CPlayerNew : CAnimatedSprite
                 {
                     setState(STATE_FALLING);
                 }
+                else
+                {
+                    if (checkFloorSpikes())
+                    {
+                        return;
+                    }
+                }
                 if (checkRightWall())
                 {
                     setState(STATE_DIE);
@@ -79,6 +86,10 @@ public class CPlayerNew : CAnimatedSprite
             case STATE_FALLING:
                 if (checkFloor())
                 {
+                    if (checkFloorSpikes())
+                    {
+                        return;
+                    }
                     setState(STATE_NORMAL);
                 }
                                
@@ -86,9 +97,19 @@ public class CPlayerNew : CAnimatedSprite
             case STATE_JUMPING:
                 if (checkFloor())
                 {
+                    if (checkFloorSpikes())
+                    {
+                        return;
+                    }
                     setState(STATE_NORMAL);
                 }
-                checkRoof();
+                if (checkRoof())
+                {
+                    if (checkRoofSpikes())
+                    {
+                        return;
+                    }
+                }
 
                 if (checkRightWall())
                 {
@@ -99,8 +120,53 @@ public class CPlayerNew : CAnimatedSprite
             
         }
         base.update();
+    }
 
+    private bool checkFloorSpikes()
+    {
 
+        if (GRAVITY > 0)
+        {
+            checkSpikes((int)getX(), (int)getY() + 1);
+            if (tileDownLeft || tileDownRight)
+            {
+                setState(STATE_DIE);
+                return true;
+            }
+        }
+        else
+        {
+            checkSpikes((int)getX(), (int)getY() - 1);
+            if (tileTopLeft || tileTopRight)
+            {
+                setState(STATE_DIE);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool checkRoofSpikes()
+    {
+        if (GRAVITY < 0)
+        {
+            checkSpikes((int)getX(), (int)getY() + 1);
+            if (tileDownLeft || tileDownRight)
+            {
+                setState(STATE_DIE);
+                return true;
+            }
+        }
+        else
+        {
+            checkSpikes((int)getX(), (int)getY() - 1);
+            if (tileTopLeft || tileTopRight)
+            {
+                setState(STATE_DIE);
+                return true;
+            }
+        }
+        return false;
     }
 
     private bool checkFloor()
@@ -126,8 +192,6 @@ public class CPlayerNew : CAnimatedSprite
                 return true;
             }
         }
-
-
         return false;
     }
 
@@ -153,8 +217,6 @@ public class CPlayerNew : CAnimatedSprite
                 return true;
             }
         }
-
-
         return false;
     }
 
@@ -245,7 +307,19 @@ public class CPlayerNew : CAnimatedSprite
         }
        
     }
+    private void checkSpikes(int aX, int aY)
+    {
+        leftTileX = aX / CTileMap.TILE_WIDTH;
+        upTileY = aY / CTileMap.TILE_HEIGHT;
+        rightTileX = (aX + getWidth() - 1) / CTileMap.TILE_WIDTH;
+        downTileY = (aY + getHeight() - 1) / CTileMap.TILE_HEIGHT;
 
+        tileTopLeft = CTileMap.inst().isSpike(leftTileX, upTileY);
+        tileTopRight = CTileMap.inst().isSpike(rightTileX, upTileY);
+        tileDownLeft = CTileMap.inst().isSpike(leftTileX, downTileY);
+        tileDownRight = CTileMap.inst().isSpike(rightTileX, downTileY);
+        
+    }
     private void checkPoints(int aX, int aY)
     {
         leftTileX = aX / CTileMap.TILE_WIDTH;

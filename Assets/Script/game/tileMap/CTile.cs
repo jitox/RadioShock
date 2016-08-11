@@ -7,6 +7,7 @@ public class CTile : CSprite
 	private int mTileIndex;
 
 	private bool mIsWalkable;
+    private bool mIsSpike;
 
 	// Parametros: coordenada del tile (x, y) y el indice del tile.
 	public CTile(int aX, int aY, int aTileIndex, Sprite aSprite)
@@ -30,6 +31,10 @@ public class CTile : CSprite
 		{
 			mIsWalkable = false;
 		}
+        if (aTileIndex == 6 || aTileIndex == 7)
+        {
+            mIsSpike = true;
+        }
 	}
 
 	public int getTileIndex()
@@ -60,4 +65,13 @@ public class CTile : CSprite
 	{
 		mIsWalkable = aIsWalkable;
 	}
+    public bool isSpike()
+    {
+        return mIsSpike;
+    }
+
+    public void setSpike(bool aIsSpike)
+    {
+        mIsSpike = aIsSpike;
+    }
 }
