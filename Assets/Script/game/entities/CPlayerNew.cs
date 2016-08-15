@@ -23,6 +23,17 @@ public class CPlayerNew : CAnimatedSprite
     private bool tileDownLeft;
     private bool tileDownRight;
 
+    // Variables for trigger collision.
+    private int triggerTopLeft;
+    private int triggerTopRight;
+    private int triggerDownLeft;
+    private int triggerDownRight;
+
+    private bool triggerTopLeftActive;
+    private bool triggerTopRightActive;
+    private bool triggerDownLeftActive;
+    private bool triggerDownRightActive;
+
     // Columnas y filas usadas en checkPoints().
     int leftTileX;
     int upTileY;
@@ -59,6 +70,46 @@ public class CPlayerNew : CAnimatedSprite
 
     override public void update()
     {
+        if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.MAP_HEIGHT * CTileMap.TILE_HEIGHT)
+        {
+            setState(STATE_DIE);
+        }
+
+        if (getState() != STATE_DIE)
+        {
+
+            checkTriggers((int)getX(), (int)getY());
+            if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
+            {
+                GRAVITY = -GRAVITY;
+
+                if (triggerDownLeft == 1)
+                {
+                    CTileMap.inst().setActive(leftTileX, downTileY, false);
+                }
+                if (triggerDownRight == 1)
+                {
+                    CTileMap.inst().setActive(rightTileX, downTileY, false);
+                }
+                if (triggerTopRight == 1)
+                {
+                    CTileMap.inst().setActive(rightTileX, upTileY, false);
+                }
+                if (triggerTopLeft == 1)
+                {
+                    CTileMap.inst().setActive(leftTileX, upTileY, false);
+                }
+            }
+
+            if (CTileMap.inst().getTriggerType(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT) == 1)
+            {
+                if (CTileMap.inst().isActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT))
+                {
+                    GRAVITY = -GRAVITY;
+                    CTileMap.inst().setActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT, false);
+                }
+            }
+        }
 
         switch (getState())
         {
@@ -307,6 +358,24 @@ public class CPlayerNew : CAnimatedSprite
         }
        
     }
+
+    private void checkTriggers(int aX, int aY)
+    {
+        leftTileX = aX / CTileMap.TILE_WIDTH;
+        upTileY = aY / CTileMap.TILE_HEIGHT;
+        rightTileX = (aX + getWidth() - 1) / CTileMap.TILE_WIDTH;
+        downTileY = (aY + getHeight() - 1) / CTileMap.TILE_HEIGHT;
+
+        triggerTopLeft = CTileMap.inst().getTriggerType(leftTileX, upTileY);
+        triggerTopLeftActive = CTileMap.inst().isActive(leftTileX, upTileY);
+        triggerTopRight = CTileMap.inst().getTriggerType(rightTileX, upTileY);
+        triggerTopRightActive = CTileMap.inst().isActive(rightTileX, upTileY);
+        triggerDownLeft = CTileMap.inst().getTriggerType(leftTileX, downTileY);
+        triggerDownLeftActive = CTileMap.inst().isActive(leftTileX, downTileY);
+        triggerDownRight = CTileMap.inst().getTriggerType(rightTileX, downTileY);
+        triggerDownRightActive = CTileMap.inst().isActive(rightTileX, downTileY);
+    }
+
     private void checkSpikes(int aX, int aY)
     {
         leftTileX = aX / CTileMap.TILE_WIDTH;

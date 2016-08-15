@@ -8,6 +8,8 @@ public class CTile : CSprite
 
 	private bool mIsWalkable;
     private bool mIsSpike;
+    private int mTriggerType;
+    private bool mIsActive = true;
 
 	// Parametros: coordenada del tile (x, y) y el indice del tile.
 	public CTile(int aX, int aY, int aTileIndex, Sprite aSprite)
@@ -23,7 +25,7 @@ public class CTile : CSprite
 	{
 		mTileIndex = aTileIndex;
 
-		if (aTileIndex == 0) 
+		if (aTileIndex == 0 || aTileIndex == 8) 
 		{
 			mIsWalkable = true;
 		} 
@@ -34,6 +36,14 @@ public class CTile : CSprite
         if (aTileIndex == 6 || aTileIndex == 7)
         {
             mIsSpike = true;
+        }
+        if (aTileIndex == 8)
+        {
+            mTriggerType = 1;
+        }
+        else
+        {
+            mTriggerType = 0;
         }
 	}
 
@@ -61,10 +71,26 @@ public class CTile : CSprite
 		return mIsWalkable;
 	}
 
-	public void setWalkable(bool aIsWalkable)
+    public void setWalkable(bool aIsWalkable)
 	{
 		mIsWalkable = aIsWalkable;
 	}
+    
+    public int getTriggerType()
+    {
+        return mTriggerType;
+    }
+
+    public bool isActive()
+    {
+        return mIsActive;
+    }
+
+    public void setActive(bool aActive)
+    {
+        mIsActive = aActive;
+    }
+
     public bool isSpike()
     {
         return mIsSpike;
