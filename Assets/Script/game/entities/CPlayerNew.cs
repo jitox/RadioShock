@@ -81,8 +81,13 @@ public class CPlayerNew : CAnimatedSprite
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
             {
-                GRAVITY = -GRAVITY;
-
+                
+                Debug.Log(GRAVITY);
+                GRAVITY *= -1;
+                setFlip(!getFlip());
+                setVelY(getVelY() * -1);
+                setAccelY(GRAVITY);
+                Debug.Log(GRAVITY);
                 if (triggerDownLeft == 1)
                 {
                     CTileMap.inst().setActive(leftTileX, downTileY, false);
@@ -101,10 +106,11 @@ public class CPlayerNew : CAnimatedSprite
                 }
             }
 
-            if (CTileMap.inst().getTriggerType(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT) == 1)
+             if (CTileMap.inst().getTriggerType(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT) == 1)
             {
                 if (CTileMap.inst().isActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT))
                 {
+                    
                     GRAVITY = -GRAVITY;
                     CTileMap.inst().setActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT, false);
                 }
