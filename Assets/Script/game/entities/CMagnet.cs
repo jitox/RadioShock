@@ -7,9 +7,9 @@ public class CMagnet : CAnimatedSprite
     public static int MAGNET_HEIGHT = 48;
     public static int MAGNET_WIDTH = 48;
 
-    public CMagnet(int aTileX, int aTileY)
+    public CMagnet(int aX, int aY)
     {
-        setXY(aTileX * CTileMap.TILE_WIDTH, aTileY * CTileMap.TILE_HEIGHT);
+        setXY(aX, aY);
     }
 
     override public void update()

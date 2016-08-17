@@ -40,6 +40,7 @@ public class CTile : CSprite
         if (aTileIndex == 8)
         {
             mTriggerType = 1;
+            CTriggerManager.inst().add(this);
         }
         else
         {
@@ -89,6 +90,8 @@ public class CTile : CSprite
     public void setActive(bool aActive)
     {
         mIsActive = aActive;
+
+        Debug.Log(mIsActive);
     }
 
     public bool isSpike()

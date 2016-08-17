@@ -10,7 +10,7 @@ public class CPlayerNew : CAnimatedSprite
     private bool midJump = false;
 
 
-    private const int SPEED = 480;
+    private const int SPEED = 340;
     private const int JUMP_SPEED = -500;
     private int GRAVITY = 900;
 
@@ -50,7 +50,7 @@ public class CPlayerNew : CAnimatedSprite
         setFrames(Resources.LoadAll<Sprite>("Sprites/player/chispita"));
         gotoAndStop(1);
         setSortingLayerName("Player");
-        setVelX(250);
+        setVelX(SPEED);
         setXY(0, 600);
 
         setRegistration(REG_TOP_LEFT);
@@ -351,10 +351,11 @@ public class CPlayerNew : CAnimatedSprite
 
         else if (getState() == STATE_DIE)
         {
+            CTriggerManager.inst().resetActive();
             setVelXY(0, 0);
             setAccelY(0);
 
-            setVelX(250);
+            setVelX(SPEED);
             setXY(0, 600);
             GRAVITY = 900;
             setFlip(false);

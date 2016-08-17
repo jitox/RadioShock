@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CManager
 {
-	private List<CGameObject> mArray;
+	public List<CGameObject> mArray;
 
 	public CManager()
 	{
