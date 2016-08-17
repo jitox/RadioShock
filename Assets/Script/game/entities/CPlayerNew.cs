@@ -185,7 +185,7 @@ public class CPlayerNew : CAnimatedSprite
     private bool checkFloorSpikes()
     {
 
-        if (getVelY() > 0)
+        if (JUMP_SPEED > 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
@@ -208,7 +208,7 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool checkRoofSpikes()
     {
-        if (getVelY() < 0)
+        if (JUMP_SPEED < 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
@@ -231,8 +231,8 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool checkFloor()
     {
-
-        if (getVelY() > 0)
+       
+        if (JUMP_SPEED > 0)
         {
             checkPoints((int)getX(), (int)getY() + 1);
             if (!tileDownLeft || !tileDownRight)
@@ -257,7 +257,7 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool checkRoof()
     {
-        if (getVelY() < 0)
+        if (JUMP_SPEED < 0)
         {
             checkPoints((int)getX(), (int)getY() + 1);
             if (!tileDownLeft || !tileDownRight)
@@ -350,7 +350,7 @@ public class CPlayerNew : CAnimatedSprite
         else if (getState() == STATE_FALLING)
         {
            // gotoAndStop(17);
-            stopMove();
+           // stopMove();
             setVelY(JUMP_SPEED);
             //setAccelY(GRAVITY);
         }
