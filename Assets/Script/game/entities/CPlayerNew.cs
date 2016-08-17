@@ -9,11 +9,12 @@ public class CPlayerNew : CAnimatedSprite
     private const int STATE_DIE = 4;
     private bool midJump = false;
 
+    private bool mWin = false;
 
     private const int SPEED = 340;
-    private const int JUMP_SPEED = -500;
-    private int GRAVITY = 900;
-
+    private int JUMP_SPEED = 500;
+    //private int GRAVITY = 900;
+    
     private const int PLAYER_WIDTH = 72;
     private const int PLAYER_HEIGHT = 48;
 
@@ -50,7 +51,7 @@ public class CPlayerNew : CAnimatedSprite
         setFrames(Resources.LoadAll<Sprite>("Sprites/player/chispita"));
         gotoAndStop(1);
         setSortingLayerName("Player");
-        setVelX(SPEED);
+        setVelXY(SPEED, JUMP_SPEED);
         setXY(0, 600);
 
         setRegistration(REG_TOP_LEFT);
@@ -81,13 +82,11 @@ public class CPlayerNew : CAnimatedSprite
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
             {
-                
-                Debug.Log(GRAVITY);
-                GRAVITY *= -1;
+                //GRAVITY *= -1;
                 setFlip(!getFlip());
-                setVelY(getVelY() * -1);
-                setAccelY(GRAVITY);
-                Debug.Log(GRAVITY);
+                JUMP_SPEED *= -1;
+                setVelY(JUMP_SPEED);
+                //setAccelY(GRAVITY);
                 if (triggerDownLeft == 1)
                 {
                     CTileMap.inst().setActive(leftTileX, downTileY, false);
@@ -105,16 +104,20 @@ public class CPlayerNew : CAnimatedSprite
                     CTileMap.inst().setActive(leftTileX, upTileY, false);
                 }
             }
-
-             if (CTileMap.inst().getTriggerType(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT) == 1)
+            else if (triggerDownLeft == 2 || triggerDownRight == 2 || triggerTopLeft == 2 || triggerTopRight == 2)
             {
-                if (CTileMap.inst().isActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT))
-                {
-                    
-                    GRAVITY = -GRAVITY;
-                    CTileMap.inst().setActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT, false);
-                }
+                setWin(true);
             }
+
+            // if (CTileMap.inst().getTriggerType(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT) == 1)
+            //{
+            //    if (CTileMap.inst().isActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT))
+            //    {
+                    
+            //        GRAVITY = -GRAVITY;
+            //        CTileMap.inst().setActive(((int)getX()) / CTileMap.TILE_WIDTH, ((int)getY()) / CTileMap.TILE_HEIGHT, false);
+            //    }
+            //}
         }
 
         switch (getState())
@@ -182,7 +185,7 @@ public class CPlayerNew : CAnimatedSprite
     private bool checkFloorSpikes()
     {
 
-        if (GRAVITY > 0)
+        if (getVelY() > 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
@@ -205,7 +208,7 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool checkRoofSpikes()
     {
-        if (GRAVITY < 0)
+        if (getVelY() < 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
@@ -229,13 +232,13 @@ public class CPlayerNew : CAnimatedSprite
     private bool checkFloor()
     {
 
-        if (GRAVITY > 0)
+        if (getVelY() > 0)
         {
             checkPoints((int)getX(), (int)getY() + 1);
             if (!tileDownLeft || !tileDownRight)
             {
                 setY((downTileY * CTileMap.TILE_HEIGHT) - PLAYER_HEIGHT);
-                               
+                setVelY(0);
                 return true;
             }
         }
@@ -245,7 +248,7 @@ public class CPlayerNew : CAnimatedSprite
             if (!tileTopLeft || !tileTopRight)
             {
                 setY(((upTileY + 1) * CTileMap.TILE_HEIGHT));
-                
+                setVelY(0);
                 return true;
             }
         }
@@ -254,7 +257,7 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool checkRoof()
     {
-        if (GRAVITY < 0)
+        if (getVelY() < 0)
         {
             checkPoints((int)getX(), (int)getY() + 1);
             if (!tileDownLeft || !tileDownRight)
@@ -338,15 +341,18 @@ public class CPlayerNew : CAnimatedSprite
             // TODO: Arreglar la animacion.
             //initAnimation(10, 17, 10, false);
             //setVelY (JUMP_SPEED);
-            GRAVITY *= -1;
+            //GRAVITY *= -1;
+            JUMP_SPEED *= -1;
+            setVelY(JUMP_SPEED);
             setFlip(!getFlip());
-            setAccelY(GRAVITY);
+            //setAccelY(GRAVITY);
         }
         else if (getState() == STATE_FALLING)
         {
            // gotoAndStop(17);
             stopMove();
-            setAccelY(GRAVITY);
+            setVelY(JUMP_SPEED);
+            //setAccelY(GRAVITY);
         }
 
         else if (getState() == STATE_DIE)
@@ -355,9 +361,10 @@ public class CPlayerNew : CAnimatedSprite
             setVelXY(0, 0);
             setAccelY(0);
 
-            setVelX(SPEED);
+            JUMP_SPEED = 500;
+            setVelXY(SPEED, JUMP_SPEED);
             setXY(0, 600);
-            GRAVITY = 900;
+            //GRAVITY = 900;
             setFlip(false);
             midJump = false;
             setState(STATE_NORMAL);
@@ -428,6 +435,16 @@ public class CPlayerNew : CAnimatedSprite
     {
         setVelY(0.0f);        
         setAccelXY(0.0f, 0.0f);
+    }
+
+    public void setWin (bool aWin)
+    {
+        mWin = aWin;
+    }
+
+    public bool getWin()
+    {
+        return mWin;
     }
 
 }

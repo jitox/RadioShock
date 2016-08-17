@@ -25,7 +25,7 @@ public class CTile : CSprite
 	{
 		mTileIndex = aTileIndex;
 
-		if (aTileIndex == 0 || aTileIndex == 8) 
+		if (aTileIndex == 0 || aTileIndex == 8 || aTileIndex == 9) 
 		{
 			mIsWalkable = true;
 		} 
@@ -40,6 +40,11 @@ public class CTile : CSprite
         if (aTileIndex == 8)
         {
             mTriggerType = 1;
+            CTriggerManager.inst().add(this);
+        }
+        else if (aTileIndex == 9)
+        {
+            mTriggerType = 2;
             CTriggerManager.inst().add(this);
         }
         else

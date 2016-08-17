@@ -68,6 +68,12 @@ public class CLevelState : CGameState
 		mMap.update ();
 
 		mCamera.update ();
+
+        if (mPlayer.getWin())
+        {
+            CGame.inst().setState(new CWinState());
+            return;
+        }
 	}
 
 	override public void render()
