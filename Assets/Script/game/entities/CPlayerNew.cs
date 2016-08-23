@@ -62,8 +62,8 @@ public class CPlayerNew : CAnimatedSprite
         setState(STATE_NORMAL);
 
         setOldXYPosition();
-        //crateTrail(CGameConstants.COLOR_RED);
-        //ChangeTrailTime(.05f);
+        crateTrail(CGameConstants.COLOR_RED);
+        ChangeTrailTime(.05f);
         
         
         render();
@@ -71,7 +71,7 @@ public class CPlayerNew : CAnimatedSprite
 
     override public void update()
     {
-        if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.MAP_HEIGHT * CTileMap.TILE_HEIGHT)
+        if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.inst().MAP_HEIGHT * CTileMap.TILE_HEIGHT)
         {
             setState(STATE_DIE);
         }

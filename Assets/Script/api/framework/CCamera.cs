@@ -57,12 +57,12 @@ public class CCamera : CGameObject
 			setY (0);
 		}
 
-		if (getX () >= CTileMap.WORLD_WIDTH - WIDTH) {
-			setX (CTileMap.WORLD_WIDTH - WIDTH);
+		if (getX () >= CTileMap.inst().WORLD_WIDTH - WIDTH) {
+			setX (CTileMap.inst().WORLD_WIDTH - WIDTH);
 		}
 
-		if (getY () >= CTileMap.WORLD_HEIGHT - HEIGHT) {
-			setY (CTileMap.WORLD_HEIGHT - HEIGHT);
+		if (getY () >= CTileMap.inst().WORLD_HEIGHT - HEIGHT) {
+			setY (CTileMap.inst().WORLD_HEIGHT - HEIGHT);
 		}
 	}
 

@@ -50,15 +50,15 @@ public class CAsteroid : CGenericEnemy
 
 		mAsteroidSprite.setRotation (mAsteroidSprite.getRotation () + mRotVel);
 
-		if (getX () > CTileMap.WORLD_WIDTH - getRadius ()) 
+		if (getX () > CTileMap.inst().WORLD_WIDTH - getRadius ()) 
 		{
-			setX (CTileMap.WORLD_WIDTH - getRadius ());
+			setX (CTileMap.inst().WORLD_WIDTH - getRadius ());
 			setVelX(getVelX() * -1);
 		}
 
-		if (getY () > CTileMap.WORLD_HEIGHT - getRadius ()) 
+		if (getY () > CTileMap.inst().WORLD_HEIGHT - getRadius ()) 
 		{
-			setY (CTileMap.WORLD_HEIGHT - getRadius ());
+			setY (CTileMap.inst().WORLD_HEIGHT - getRadius ());
 			setVelY(getVelY() * -1);
 		}
 
