@@ -11,8 +11,8 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool mWin = false;
 
-    private const int SPEED = 340;
-    private int JUMP_SPEED = 500;
+    private const int SPEED = 360;
+    private int JUMP_SPEED = 650;
     //private int GRAVITY = 900;
     
     private const int PLAYER_WIDTH = 72;
@@ -361,9 +361,9 @@ public class CPlayerNew : CAnimatedSprite
             setVelXY(0, 0);
             setAccelY(0);
 
-            JUMP_SPEED = 500;
+            JUMP_SPEED = 650;
             setVelXY(SPEED, JUMP_SPEED);
-            setXY(0, 600);
+            setXY(0, 400);
             //GRAVITY = 900;
             setFlip(false);
             midJump = false;
