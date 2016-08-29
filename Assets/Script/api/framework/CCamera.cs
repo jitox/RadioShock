@@ -6,7 +6,15 @@ public class CCamera : CGameObject
 	public const int WIDTH = CGameConstants.SCREEN_WIDTH;
 	public const int HEIGHT = CGameConstants.SCREEN_HEIGHT;
 
-	public const int SPEED = 60;
+    private float mTimeShake;
+    private float mTimer;
+    private float mShakeForce;
+    private float mShakeDistX;
+    private float mShakeDistY;
+    private bool mShake = false;
+    private Vector2 mObjective;
+
+    public const int SPEED = 60;
 
 	private CGameObject mGameObjectToFollow;
 
@@ -20,28 +28,27 @@ public class CCamera : CGameObject
 
 		if (mGameObjectToFollow != null) 
 		{
-			setX (mGameObjectToFollow.getX () - WIDTH / 2);
+            followObject();
+			//setX (mGameObjectToFollow.getX () - WIDTH / 2);
 			//setY (mGameObjectToFollow.getY () - HEIGHT / 2);
 		} 
 		else 
 		{
-			// Mover la camara con el teclado.
-			if (CKeyboard.pressed (CKeyboard.KEY_W)) {
-				setVelY (-SPEED);
-			} else if (CKeyboard.pressed (CKeyboard.KEY_S)) {
-				setVelY (SPEED);
-			} else {
-				setVelY (0);
-			}
+            // Mover la camara con el teclado.
+            if (isShaking())
+            {
+                mShakeDistX = shake();
+                mShakeDistY = shake();
+            }
+            else
+            {
+                mShakeDistX = 0;
+                mShakeDistY = 0;
+            }
 
-			if (CKeyboard.pressed (CKeyboard.KEY_A)) {
-				setVelX (-SPEED);
-			} else if (CKeyboard.pressed (CKeyboard.KEY_D)) {
-				setVelX (SPEED);
-			} else {
-				setVelX (0);
-			}
-		}
+            setX(mObjective.x + mShakeDistX);
+            setY(mObjective.y + mShakeDistY);
+        }
 
 		// Chequear que la camara no se vaya de los bordes.
 		checkBorder();
@@ -85,5 +92,65 @@ public class CCamera : CGameObject
 	{
 		return mGameObjectToFollow;
 	}
+    private void SetShake(bool aShake)
+    {
+        mShake = aShake;
+        if (!aShake)
+        {
+            mTimeShake = 0;
+        }
+    }
+
+    private bool isShaking()
+    {
+        return mShake;
+    }
+
+    public void initShake(bool aBoolean, float aTimeShake, float aShakeForce)
+    {
+        SetShake(aBoolean);
+        mTimeShake = aTimeShake;
+        mShakeForce = aShakeForce;
+        mTimer = 0;
+    }
+
+    public void stopShake()
+    {
+        SetShake(false);
+    }
+
+    public float shake()
+    {
+        mTimer = mTimer + Time.deltaTime;
+
+        if (mTimer < mTimeShake)
+        {
+            return CMath.randomFloatBetween(-mShakeForce, mShakeForce);
+            
+        }
+        else
+        {
+            SetShake(false);
+        }
+        return 0;
+    }
+
+    public void followObject()
+    {
+        if (isShaking())
+        {
+            mShakeDistX = shake();
+            mShakeDistY = shake();
+        }
+        else
+        {
+            mShakeDistX = 0;
+            mShakeDistY = 0;
+        }
+        
+        setX(mGameObjectToFollow.getX() - getWidth() / 2 + mShakeDistX);
+        setY( getY() + mShakeDistY);
+        //setY(mGameObjectToFollow.getY() - getHeight() / 2 + mShakeDistY);
+    }
 }
 

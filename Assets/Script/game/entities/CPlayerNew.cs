@@ -45,9 +45,12 @@ public class CPlayerNew : CAnimatedSprite
     int mOldX;
     int mOldY;
 
+    private bool firstPass;
+
     public CPlayerNew()
     {
         //setFrames(Resources.LoadAll<Sprite>("Sprites/player"));
+        firstPass = true;
         setFrames(Resources.LoadAll<Sprite>("Sprites/player/chispita"));
         gotoAndStop(1);
         setSortingLayerName("Player");
@@ -62,8 +65,8 @@ public class CPlayerNew : CAnimatedSprite
         setState(STATE_NORMAL);
 
         setOldXYPosition();
-        crateTrail(CGameConstants.COLOR_RED);
-        ChangeTrailTime(.05f);
+        //crateTrail(CGameConstants.COLOR_RED);
+        //ChangeTrailTime(.05f);
         
         
         render();
@@ -334,6 +337,10 @@ public class CPlayerNew : CAnimatedSprite
             //initAnimation(2, 9, 10, true);
             stopMove();
             midJump = false;
+            if (firstPass) {
+                firstPass = false;
+            } else
+                CGame.inst().getCamera().initShake(true, 1f, 1f);
         }
 
         else if (getState() == STATE_JUMPING)
@@ -345,6 +352,7 @@ public class CPlayerNew : CAnimatedSprite
             JUMP_SPEED *= -1;
             setVelY(JUMP_SPEED);
             setFlip(!getFlip());
+            
             //setAccelY(GRAVITY);
         }
         else if (getState() == STATE_FALLING)
@@ -357,6 +365,7 @@ public class CPlayerNew : CAnimatedSprite
 
         else if (getState() == STATE_DIE)
         {
+            CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
             CTriggerManager.inst().resetActive();
             setVelXY(0, 0);
             setAccelY(0);

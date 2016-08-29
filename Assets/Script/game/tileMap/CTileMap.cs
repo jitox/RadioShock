@@ -51,8 +51,8 @@ public class CTileMap
 	{
 		registerSingleton ();
         LEVEL_001 = CMapParser.readMap("Assets/Resources/XmlMap/level1prototype.xml");
-        MAP_HEIGHT = LEVEL_001.Length-1;
-        MAP_WIDTH = LEVEL_001[0].Length-1;
+        MAP_HEIGHT = LEVEL_001.Length;
+        MAP_WIDTH = LEVEL_001[0].Length;
         WORLD_WIDTH = MAP_WIDTH * TILE_WIDTH;
         WORLD_HEIGHT = MAP_HEIGHT * TILE_HEIGHT;
 
