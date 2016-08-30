@@ -311,7 +311,7 @@ public class CPlayerNew : CAnimatedSprite
     {
         if (!midJump)
         {
-            if ((CKeyboard.firstPress(CKeyboard.SPACE) || CKeyboard.firstPress(CKeyboard.UP)))
+            if ((CKeyboard.firstPress(CKeyboard.SPACE) || CKeyboard.firstPress(CKeyboard.UP)|| CMouse.firstPress()))
             {
                 if (getState() == STATE_JUMPING)
                 {
