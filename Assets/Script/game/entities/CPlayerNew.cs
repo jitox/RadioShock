@@ -46,6 +46,7 @@ public class CPlayerNew : CAnimatedSprite
     int mOldY;
 
     private bool firstPass;
+    CTrailParticle auxTrail;
 
     public CPlayerNew()
     {
@@ -54,6 +55,7 @@ public class CPlayerNew : CAnimatedSprite
         setFrames(Resources.LoadAll<Sprite>("Sprites/player/chispita"));
         gotoAndStop(1);
         setSortingLayerName("Player");
+        setName("Player");
         setVelXY(SPEED, JUMP_SPEED);
         setXY(0, 600);
 
@@ -82,6 +84,8 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() != STATE_DIE)
         {
 
+             auxTrail = new CTrailParticle(getX(),getY());
+           
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
             {
@@ -339,8 +343,8 @@ public class CPlayerNew : CAnimatedSprite
             midJump = false;
             if (firstPass) {
                 firstPass = false;
-            } else
-                CGame.inst().getCamera().initShake(true, 1f, 1f);
+            } //else
+                //CGame.inst().getCamera().initShake(true, 1f, 1f);
         }
 
         else if (getState() == STATE_JUMPING)

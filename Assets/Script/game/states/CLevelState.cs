@@ -9,6 +9,7 @@ public class CLevelState : CGameState
 	private CBulletManager mBulletManager;
 	private CEnemyManager mEnemyManager;
     private CTriggerManager mTriggerManager;
+    private CParticleManager mParticleManager;
 
 	private CSprite mBackground;
 
@@ -27,8 +28,9 @@ public class CLevelState : CGameState
 		mBulletManager = new CBulletManager ();
 		mEnemyManager = new CEnemyManager ();
         mTriggerManager = new CTriggerManager();
+        mParticleManager = new CParticleManager();
 
-		mMap = new CTileMap(1);
+        mMap = new CTileMap(1);
 
 		mCamera = new CCamera ();
 		mCamera.setXY (0, 0);
@@ -66,7 +68,7 @@ public class CLevelState : CGameState
 		mBulletManager.update ();
 		mEnemyManager.update ();
 		mMap.update ();
-
+        mParticleManager.update();
 		mCamera.update ();
 
         if (mPlayer.getWin())
@@ -85,7 +87,9 @@ public class CLevelState : CGameState
 		mBulletManager.render ();
 		mEnemyManager.render ();
         mTriggerManager.render();
-		mMap.render ();
+        mParticleManager.render();
+
+        mMap.render ();
 
 		mCamera.render ();
 	}
@@ -105,6 +109,8 @@ public class CLevelState : CGameState
 		mEnemyManager = null;
         mTriggerManager.destroy();
         mTriggerManager = null;
+        mParticleManager.destroy();
+        mParticleManager = null;
 
 		mMap.destroy ();
 		mMap = null;
