@@ -148,4 +148,9 @@ public class CLevelState : CGameState
 		c = new CCannon (16, 6);
 		CEnemyManager.inst().add(c);
 	}
+
+    public void passAllMap()
+    {
+        mMap.renderAllMap();
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CTileMap
 {
@@ -22,6 +23,8 @@ public class CTileMap
 
     // Array con los sprites de los tiles.
     private Sprite[] mTiles;
+
+   
 #if UNITY_ANDROID
     // La pantalla tiene 17 columnas x 13 filas de tiles.
     public static int[][] LEVEL_001 = {
@@ -124,6 +127,10 @@ new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 		{
 			for (int x = 0; x < MAP_WIDTH; x++) 
 			{
+                CCamera cam = CGame.inst().getCamera();
+                float camMin = cam.getX() - CCamera.WIDTH;
+                float camMax = cam.getX() + CCamera.WIDTH *2;
+                if (mMap[y][x].getX()>=camMin  && mMap[y][x].getX()<=camMax)
 				mMap [y] [x].render ();
 			}
 		}
@@ -191,4 +198,17 @@ new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 		
 		return mMap [aTileY] [aTileX].getTileIndex();
 	}
+
+    public  void renderAllMap()
+    {
+        for (int y = 0; y < MAP_HEIGHT; y++)
+        {
+            for (int x = 0; x < MAP_WIDTH; x++)
+            {
+                mMap[y][x].update();
+                mMap[y][x].render();
+            }
+        }
+
+    }
 }

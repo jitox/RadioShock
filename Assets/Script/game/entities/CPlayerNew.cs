@@ -84,7 +84,7 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() != STATE_DIE)
         {
 
-             auxTrail = new CTrailParticle(getX(),getY());
+            // auxTrail = new CTrailParticle(getX(),getY());
            
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
@@ -369,7 +369,7 @@ public class CPlayerNew : CAnimatedSprite
 
         else if (getState() == STATE_DIE)
         {
-            CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
+            //CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
             CTriggerManager.inst().resetActive();
             setVelXY(0, 0);
             setAccelY(0);
@@ -381,6 +381,7 @@ public class CPlayerNew : CAnimatedSprite
             setFlip(false);
             midJump = false;
             setState(STATE_NORMAL);
+            (CGame.inst().getState() as CLevelState).passAllMap();
 
         }
        

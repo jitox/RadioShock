@@ -48,21 +48,18 @@ public class CSprite : CGameObject
 			}
 		}
 
-		float x;
-		float y;
+		float x = getX();
+        float y = getY();
 
-		if (CGame.inst ().getCamera () != null) 
-		{
-			x = getX () - CGame.inst ().getCamera ().getX ();
-			y = getY () - CGame.inst ().getCamera ().getY ();
-		} 
-		else 
-		{
-			x = getX ();
-			y = getY ();
-		}
+        CCamera cam = CGame.inst().getCamera();
+        if (cam != null)
+        {
+            x -= cam.getX();
+            y -= cam.getY();
+            //y = getY() - CGame.inst().getCamera().getY();
+        }
 
-		Vector3 pos = new Vector3 (x , (y +offsetY)* -1, 0.0f);
+        Vector3 pos = new Vector3 (x , (y +offsetY)* -1, 0.0f);
 		mTransform.position = pos;
 
 		if (!mIsRotatingSprite) 
