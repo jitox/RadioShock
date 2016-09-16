@@ -25,7 +25,7 @@ public class CTile : CSprite
 	{
 		mTileIndex = aTileIndex;
 
-		if (aTileIndex == 0 || aTileIndex == 8 || aTileIndex == 9) 
+		if (aTileIndex == 0 || aTileIndex == 12 || aTileIndex == 9) 
 		{
 			mIsWalkable = true;
 		} 
@@ -33,11 +33,11 @@ public class CTile : CSprite
 		{
 			mIsWalkable = false;
 		}
-        if (aTileIndex == 6 || aTileIndex == 7)
+        if (aTileIndex == 10 || aTileIndex == 11)
         {
             mIsSpike = true;
         }
-        if (aTileIndex == 8)
+        if (aTileIndex == 12)
         {
             mTriggerType = 1;
             CTriggerManager.inst().add(this);
