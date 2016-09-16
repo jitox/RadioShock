@@ -44,7 +44,7 @@ public class CPlayerNew : CAnimatedSprite
     // Variables para solucionar el problema de las colisiones en diagonal.
     int mOldX;
     int mOldY;
-
+    private bool markToClearMap = false;
     private bool firstPass;
     CTrailParticle auxTrail;
 
@@ -71,12 +71,18 @@ public class CPlayerNew : CAnimatedSprite
         //crateTrail(CGameConstants.COLOR_RED);
         //ChangeTrailTime(.05f);
         
-        
+
         render();
     }
 
     override public void update()
     {
+        if (markToClearMap)
+        {
+            (CGame.inst().getState() as CLevelState).passAllMap();
+            markToClearMap = false;
+        }
+       
         if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.inst().MAP_HEIGHT * CTileMap.TILE_HEIGHT)
         {
             setState(STATE_DIE);
@@ -381,8 +387,9 @@ public class CPlayerNew : CAnimatedSprite
             //GRAVITY = 900;
             setFlip(false);
             midJump = false;
+            markToClearMap = true;
             setState(STATE_NORMAL);
-            (CGame.inst().getState() as CLevelState).passAllMap();
+            
 
         }
        
