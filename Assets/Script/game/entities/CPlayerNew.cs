@@ -70,7 +70,7 @@ public class CPlayerNew : CAnimatedSprite
         setOldXYPosition();
         //crateTrail(CGameConstants.COLOR_RED);
         //ChangeTrailTime(.05f);
-        
+
 
         render();
     }
@@ -91,8 +91,8 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() != STATE_DIE)
         {
 
-            // auxTrail = new CTrailParticle(getX(),getY());
-           
+            auxTrail = new CTrailParticle(getX(), getY());
+
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
             {

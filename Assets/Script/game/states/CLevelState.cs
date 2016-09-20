@@ -43,11 +43,11 @@ public class CLevelState : CGameState
 	{
 		base.init ();
 
-		mBackground = new CSprite ();
-		mBackground.setImage (Resources.Load<Sprite> ("Sprites/game_background"));
-		mBackground.setXY (0, 0);
-		mBackground.setSortingLayerName ("Background");
-		mBackground.setName ("background");
+		//mBackground = new CSprite ();
+		//mBackground.setImage (Resources.Load<Sprite> ("Sprites/game_background"));
+		//mBackground.setXY (0, 0);
+		//mBackground.setSortingLayerName ("Background");
+		//mBackground.setName ("background");
 
 		createAsteroids ();
 		//eateCannons ();
@@ -63,7 +63,7 @@ public class CLevelState : CGameState
 			return;
 		}
 
-		mBackground.update ();
+		//mBackground.update ();
 		mPlayer.update ();
 		mBulletManager.update ();
 		mEnemyManager.update ();
@@ -82,7 +82,7 @@ public class CLevelState : CGameState
 	{
 		base.render ();
 
-		mBackground.render ();
+		//mBackground.render ();
 		mPlayer.render ();
 		mBulletManager.render ();
 		mEnemyManager.render ();
@@ -99,8 +99,8 @@ public class CLevelState : CGameState
 	{
 		base.destroy ();
 
-		mBackground.destroy ();
-		mBackground = null;
+		//mBackground.destroy ();
+		//mBackground = null;
 		mPlayer.destroy ();
 		mPlayer = null;
 		mBulletManager.destroy ();

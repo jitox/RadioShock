@@ -21,7 +21,7 @@ public class CTileMap
     List<List<CTile>> mMap;
 
     // Cantidad de tiles que hay.
-    private const int NUM_TILES = 13;
+    private const int NUM_TILES = 16;
 
     // Array con los sprites de los tiles.
     private Sprite[] mTiles;
@@ -76,6 +76,9 @@ new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0
         mTiles [10] = Resources.Load<Sprite> ("Sprites/tiles/tile010");
         mTiles [11] = Resources.Load<Sprite> ("Sprites/tiles/tile011");
         mTiles [12] = Resources.Load<Sprite> ("Sprites/tiles/tile012");
+        mTiles[13] = Resources.Load<Sprite>("Sprites/tiles/tile013");
+        mTiles[14] = Resources.Load<Sprite>("Sprites/tiles/tile014");
+        mTiles[15] = Resources.Load<Sprite>("Sprites/tiles/tile015");
 
         loadLevel(aLevel);
         
