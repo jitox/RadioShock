@@ -389,6 +389,7 @@ public class CPlayerNew : CAnimatedSprite
             setFlip(false);
             midJump = false;
             markToClearMap = true;
+            CParticleManager.inst().killEmAll();
             setState(STATE_NORMAL);
             
 
