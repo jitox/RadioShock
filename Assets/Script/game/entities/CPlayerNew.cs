@@ -141,6 +141,7 @@ public class CPlayerNew : CAnimatedSprite
                 if (!checkFloor())
                 {
                     setState(STATE_FALLING);
+                    
                 }
                 else
                 {
@@ -166,7 +167,7 @@ public class CPlayerNew : CAnimatedSprite
                     }
                     setState(STATE_NORMAL);
                 }
-                               
+                jumpControl();           
                 break;
             case STATE_JUMPING:
                 if (checkFloor())
