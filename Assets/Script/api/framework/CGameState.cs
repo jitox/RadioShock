@@ -47,4 +47,9 @@ public class CGameState
 	{
 		return mTimeState;
 	}
+
+    virtual public void passAllMap()
+    {
+       
+    }
 }

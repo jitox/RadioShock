@@ -149,7 +149,7 @@ public class CLevelState : CGameState
 		CEnemyManager.inst().add(c);
 	}
 
-    public void passAllMap()
+    override public void passAllMap()
     {
         mMap.renderAllMap();
     }

@@ -79,7 +79,7 @@ public class CPlayerNew : CAnimatedSprite
     {
         if (markToClearMap)
         {
-            (CGame.inst().getState() as CLevelState).passAllMap();
+            CGame.inst().getState().passAllMap();
             markToClearMap = false;
         }
        
