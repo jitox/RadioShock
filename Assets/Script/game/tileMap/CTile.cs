@@ -60,7 +60,11 @@ public class CTile : CSprite
 
 	override public void render()
 	{
-		base.render ();
+        if (getTileIndex() != 0)
+        {
+            base.render();
+        }
+		
 	}
 
 	override public void update()

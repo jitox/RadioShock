@@ -24,20 +24,20 @@ public class CMainMenuState : CGameState
 		mBackground.setName ("background");
 
 		mButtonPlay = new CButtonSprite ();
-		mButtonPlay.setFrames (Resources.LoadAll<Sprite> ("Sprites/ui"));
+		mButtonPlay.setFrames (Resources.LoadAll<Sprite> ("Sprites/ui/button/Level1"));
 		mButtonPlay.gotoAndStop (1);
 		mButtonPlay.setXY (CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2);
-		mButtonPlay.setWidth (190);
-		mButtonPlay.setHeight (50);
+		mButtonPlay.setWidth (320);
+		mButtonPlay.setHeight (96);
 		mButtonPlay.setSortingLayerName ("UI");
 		mButtonPlay.setName ("button Level 1");
 
         mButtonLevel2 = new CButtonSprite();
-        mButtonLevel2.setFrames(Resources.LoadAll<Sprite>("Sprites/ui"));
+        mButtonLevel2.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/Level2"));
         mButtonLevel2.gotoAndStop(1);
-        mButtonLevel2.setXY(CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2 + 100);
-        mButtonLevel2.setWidth(190);
-        mButtonLevel2.setHeight(50);
+        mButtonLevel2.setXY(CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2 + 200);
+        mButtonLevel2.setWidth(320);
+        mButtonLevel2.setHeight(96);
         mButtonLevel2.setSortingLayerName("UI");
         mButtonLevel2.setName("button Level 1");
     }
@@ -51,12 +51,12 @@ public class CMainMenuState : CGameState
 
 		if (mButtonPlay.clicked ()) 
 		{
-			CGame.inst ().setState(new CLevelState ());
+			CGame.inst ().setState(new CLevelState (1));
 			return;
 		}
         if (mButtonLevel2.clicked())
         {
-            CGame.inst().setState(new CLevel2State());
+            CGame.inst().setState(new CLevelState(2));
             return;
         }
 	}

@@ -17,7 +17,7 @@ public class CLevelState : CGameState
 
 	private CCamera mCamera;
 
-	public CLevelState()
+	public CLevelState(int aLevel)
 	{
 		mPlayer = new CPlayerNew ();
 	    CGame.inst ().setPlayer (mPlayer);
@@ -30,7 +30,7 @@ public class CLevelState : CGameState
         mTriggerManager = new CTriggerManager();
         mParticleManager = new CParticleManager();
 
-        mMap = new CTileMap(1);
+        mMap = new CTileMap(aLevel);
 
 		mCamera = new CCamera ();
 		mCamera.setXY (0, 0);
