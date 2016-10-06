@@ -37,6 +37,7 @@ public class CTile : CSprite
         if (aTileIndex == 10 || aTileIndex == 11)
         {
             mIsSpike = true;
+           // mIsWalkable = true;
         }
         if (aTileIndex == 12)
         {
@@ -65,7 +66,7 @@ public class CTile : CSprite
         {
             base.render();
         }
-        if(getTileIndex() != 11) { 
+        if(getTileIndex() != 11 && getTileIndex() != 10 && getTileIndex() != 12 && getTileIndex() != 9) { 
         if (getColor() != CTileMap.inst().actualColor)
         {
             setColor(CTileMap.inst().actualColor);

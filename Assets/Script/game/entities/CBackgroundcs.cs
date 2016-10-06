@@ -16,7 +16,7 @@ public class CBackgroundcs:CGameObject
         mBackground.setImage(Resources.Load<Sprite>("Sprites/backgruond/background2"));
         setX(-270);
         mBackground.setAlpha(0.50f);
-        setVelX(-30);
+        setVelX(550);
         
     }
 
@@ -37,8 +37,8 @@ public class CBackgroundcs:CGameObject
     {
         base.render();
         mBackground.render();
-       
-        mBackground.setXY(getX() + CGame.inst().getCamera().getX(), getY() + CGame.inst().getCamera().getY());
+        mBackground.setXY(getX(), getY());
+        //mBackground.setXY(getX() + CGame.inst().getCamera().getX(), getY() + CGame.inst().getCamera().getY());
     }
 
     public override void destroy()
