@@ -19,7 +19,7 @@ public class CTileMap
     public int WORLD_HEIGHT;
 
     List<List<CTile>> mMap;
-
+    public Color actualColor;
     // Cantidad de tiles que hay.
     private const int NUM_TILES = 16;
 
@@ -71,6 +71,7 @@ new int[] {8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
     public CTileMap(int aLevel)
 	{
 		registerSingleton ();
+        actualColor = Color.red;
 #if UNITY_EDITOR
         switch (aLevel)
         {
@@ -252,5 +253,23 @@ new int[] {8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
             }
         }
 
+    }
+
+    public void ChangeColor()
+    {
+        Debug.Log(actualColor.ToString());
+        if (actualColor == Color.red)
+        {
+            actualColor = Color.magenta;
+        }
+        else if (actualColor == Color.magenta)
+        {
+            actualColor = Color.cyan;
+        }else if (actualColor == Color.cyan)
+        {
+            actualColor = Color.red;
+        }
+
+        Debug.Log(actualColor.ToString());
     }
 }

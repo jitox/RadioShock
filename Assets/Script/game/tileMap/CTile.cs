@@ -19,6 +19,7 @@ public class CTile : CSprite
 
 		setImage (aSprite);
 		setSortingLayerName ("TileMap");
+        
 	}
 
 	public void setTileIndex(int aTileIndex)
@@ -64,6 +65,15 @@ public class CTile : CSprite
         {
             base.render();
         }
+        if (getColor() != CTileMap.inst().actualColor)
+        {
+            setColor(CTileMap.inst().actualColor);
+            //Debug.Log(" Mapa " + CTileMap.inst().actualColor.ToString());
+            //Debug.Log("TILE COLOR " + getColor());
+            
+        }
+        
+
 		
 	}
 
@@ -100,7 +110,7 @@ public class CTile : CSprite
     {
         mIsActive = aActive;
 
-        Debug.Log(mIsActive);
+       // Debug.Log(mIsActive);
     }
 
     public bool isSpike()

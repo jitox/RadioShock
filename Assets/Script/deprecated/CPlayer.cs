@@ -114,7 +114,9 @@ public class CPlayer : CAnimatedSprite
 
             if (CKeyboard.pressed (CKeyboard.SPACE) || CKeyboard.pressed (CKeyboard.UP)) {
 				setState (STATE_JUMPING);
-				return;
+                
+                
+                return;
 			}
 
 			if (CKeyboard.pressed (CKeyboard.LEFT)) {
@@ -385,12 +387,14 @@ public class CPlayer : CAnimatedSprite
             GRAVITY *= -1;
             setFlip(!getFlip());
 			setAccelY (GRAVITY);
+           
 		} 
 		else if (getState () == STATE_FALLING) 
 		{
 			gotoAndStop(17);
 			stopMove();
 			setAccelY (GRAVITY);
+
 		} else if (getState() == STATE_DIE)
         {
             setVelXY(0, 0);
@@ -402,6 +406,7 @@ public class CPlayer : CAnimatedSprite
             setFlip(false);
             midJump = false;
             setState(STATE_STAND);
+            
 
         }
 	}

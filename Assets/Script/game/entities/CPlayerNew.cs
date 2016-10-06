@@ -364,7 +364,7 @@ public class CPlayerNew : CAnimatedSprite
             JUMP_SPEED *= -1;
             setVelY(JUMP_SPEED);
             setFlip(!getFlip());
-            
+            CTileMap.inst().ChangeColor();
             //setAccelY(GRAVITY);
         }
         else if (getState() == STATE_FALLING)
