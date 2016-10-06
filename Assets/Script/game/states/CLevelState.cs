@@ -11,11 +11,13 @@ public class CLevelState : CGameState
     private CTriggerManager mTriggerManager;
     private CParticleManager mParticleManager;
 
-	private CSprite mBackground;
+	public CBackgroundcs mBackground;
 
 	private CTileMap mMap;
 
 	private CCamera mCamera;
+
+    
 
 	public CLevelState(int aLevel)
 	{
@@ -37,6 +39,8 @@ public class CLevelState : CGameState
 		mCamera.setVelX (30);
 		CGame.inst ().setCamera (mCamera);
 		mCamera.setGameObjectToFollow (mPlayer);
+
+        mBackground = new CBackgroundcs();
 	}
 
 	override public void init()
@@ -63,7 +67,7 @@ public class CLevelState : CGameState
 			return;
 		}
 
-		//mBackground.update ();
+		mBackground.update ();
 		mPlayer.update ();
 		mBulletManager.update ();
 		mEnemyManager.update ();
@@ -82,7 +86,7 @@ public class CLevelState : CGameState
 	{
 		base.render ();
 
-		//mBackground.render ();
+		mBackground.render ();
 		mPlayer.render ();
 		mBulletManager.render ();
 		mEnemyManager.render ();
@@ -99,8 +103,8 @@ public class CLevelState : CGameState
 	{
 		base.destroy ();
 
-		//mBackground.destroy ();
-		//mBackground = null;
+		mBackground.destroy ();
+		mBackground = null;
 		mPlayer.destroy ();
 		mPlayer = null;
 		mBulletManager.destroy ();

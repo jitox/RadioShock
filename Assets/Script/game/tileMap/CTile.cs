@@ -65,6 +65,7 @@ public class CTile : CSprite
         {
             base.render();
         }
+        if(getTileIndex() != 11) { 
         if (getColor() != CTileMap.inst().actualColor)
         {
             setColor(CTileMap.inst().actualColor);
@@ -72,10 +73,11 @@ public class CTile : CSprite
             //Debug.Log("TILE COLOR " + getColor());
             
         }
-        
+        }
 
-		
-	}
+
+
+    }
 
 	override public void update()
 	{

@@ -391,6 +391,7 @@ public class CPlayerNew : CAnimatedSprite
             markToClearMap = true;
             CParticleManager.inst().killEmAll();
             setState(STATE_NORMAL);
+            (CGame.inst().getState() as CLevelState).mBackground.resetPos();
             
 
         }
