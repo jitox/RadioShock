@@ -13,6 +13,7 @@ public class CCamera : CGameObject
     private float mShakeDistY;
     private bool mShake = false;
     private Vector2 mObjective;
+    private bool onBorder = false;
 
     public const int SPEED = 60;
 
@@ -66,6 +67,7 @@ public class CCamera : CGameObject
 
 		if (getX () >= CTileMap.inst().WORLD_WIDTH - WIDTH) {
 			setX (CTileMap.inst().WORLD_WIDTH - WIDTH);
+            onBorder = true;
 		}
 
 		if (getY () >= CTileMap.inst().WORLD_HEIGHT - HEIGHT) {
@@ -151,6 +153,10 @@ public class CCamera : CGameObject
         setX(mGameObjectToFollow.getX() - getWidth() / 2 + mShakeDistX);
         setY( getY() + mShakeDistY);
         //setY(mGameObjectToFollow.getY() - getHeight() / 2 + mShakeDistY);
+    }
+    public bool getOnborder()
+    {
+        return onBorder;
     }
 }
 

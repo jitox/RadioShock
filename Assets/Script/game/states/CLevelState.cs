@@ -16,6 +16,7 @@ public class CLevelState : CGameState
 	private CTileMap mMap;
 
 	private CCamera mCamera;
+    private  int currentLvl;
 
     
 
@@ -23,7 +24,7 @@ public class CLevelState : CGameState
 	{
 		mPlayer = new CPlayerNew ();
 	    CGame.inst ().setPlayer (mPlayer);
-
+        currentLvl = aLevel;
 		//mPlayer = new CShip ();
 		//CGame.inst ().setShip (mPlayer);
 
@@ -32,7 +33,7 @@ public class CLevelState : CGameState
         mTriggerManager = new CTriggerManager();
         mParticleManager = new CParticleManager();
 
-        mMap = new CTileMap(aLevel);
+        mMap = new CTileMap(currentLvl);
 
 		mCamera = new CCamera ();
 		mCamera.setXY (0, 0);
@@ -53,7 +54,7 @@ public class CLevelState : CGameState
 		//mBackground.setSortingLayerName ("Background");
 		//mBackground.setName ("background");
 
-		createAsteroids ();
+		
 		//eateCannons ();
 	}
 
@@ -77,7 +78,7 @@ public class CLevelState : CGameState
 
         if (mPlayer.getWin())
         {
-            CGame.inst().setState(new CWinState());
+            CGame.inst().setState(new CWinState(currentLvl));            
             return;
         }
 	}
@@ -122,36 +123,9 @@ public class CLevelState : CGameState
 		mCamera = null;
 	}
 
-	private void createAsteroids()
-	{
-		/*CAsteroid a;
 
-		for (int i = 0; i < 3; i++) 
-		{
-			a = new CAsteroid(CAsteroid.ASTEROID_BIG);
-			a.setX(CMath.randomIntBetween(a.getRadius(), CTileMap.WORLD_WIDTH - a.getRadius()));
-			a.setY (CMath.randomIntBetween(a.getRadius(), CTileMap.WORLD_HEIGHT - a.getRadius()));
-			a.setVelX(CMath.randomIntBetween(-300, 300));
-			a.setVelY(0);
-			a.setAccelX(0);
-			a.setAccelY(200);
-			CEnemyManager.inst().add(a);
-		}*/
-	}
 
-	private void createCannons()
-	{
-		CCannon c;
-
-		c = new CCannon (3, 3);
-		CEnemyManager.inst().add(c);
-
-		c = new CCannon (11, 3);
-		CEnemyManager.inst().add(c);
-
-		c = new CCannon (16, 6);
-		CEnemyManager.inst().add(c);
-	}
+	
 
     override public void passAllMap()
     {

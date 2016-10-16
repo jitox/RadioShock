@@ -4,23 +4,32 @@ using System.Collections;
 public class CWinState : CGameState
 {
     private CText mText;
+    
+    private int currentLvl;
 
-    public CWinState()
+    
+
+    public CWinState(int aLvl)
     {
         mText = new CText("YOU WIN!", CText.alignment.TOP_CENTER, 60);
         mText.setXY(400, 400);
         mText.setColor(Color.white);
-    }
+        currentLvl = aLvl;
+   }
 
     public override void init()
     {
-        base.init();
+        base.init();     
+
     }
 
     public override void update()
     {
         base.update();
         mText.update();
+      
+       
+
     }
 
     public override void render()
@@ -34,5 +43,7 @@ public class CWinState : CGameState
         base.destroy();
         mText.destroy();
         mText = null;
+       
+
     }
 }

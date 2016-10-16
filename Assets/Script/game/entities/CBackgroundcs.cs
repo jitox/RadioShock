@@ -15,8 +15,11 @@ public class CBackgroundcs:CGameObject
         mBackground.setSortingLayerName("Background");
         mBackground.setImage(Resources.Load<Sprite>("Sprites/backgruond/background2"));
         setX(-270);
+        setY(100);
         mBackground.setAlpha(0.50f);
-        setVelX(550);
+        //setVelX(550);
+        setVelX(-15);
+        
         
     }
 
@@ -24,6 +27,10 @@ public class CBackgroundcs:CGameObject
     {
         base.update();
         mBackground.update();
+        if (CGame.inst().getCamera().getOnborder())
+        {
+            setVelX(0);
+        }
         //if (mBackground.getColor() != CTileMap.inst().actualColor)
         //{
         //    mBackground.setColor(CTileMap.inst().actualColor);
@@ -37,8 +44,8 @@ public class CBackgroundcs:CGameObject
     {
         base.render();
         mBackground.render();
-        mBackground.setXY(getX(), getY());
-        //mBackground.setXY(getX() + CGame.inst().getCamera().getX(), getY() + CGame.inst().getCamera().getY());
+        //mBackground.setXY(getX(), getY());
+        mBackground.setXY(getX() + CGame.inst().getCamera().getX(), getY() + CGame.inst().getCamera().getY());
     }
 
     public override void destroy()
