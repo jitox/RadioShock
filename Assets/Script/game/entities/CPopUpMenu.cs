@@ -58,7 +58,7 @@ public  class CPopUpMenu :CGameObject
 
     public override void update()
     {
-        
+        base.update();
         mButtonPlay.update();
         //mainMenu.update();
         //nextLvl.update();
@@ -84,6 +84,7 @@ public  class CPopUpMenu :CGameObject
 
     public override void render()
     {
+        base.render();
         mButtonPlay.render();
         //mainMenu.render();
         //nextLvl.render();
@@ -93,6 +94,9 @@ public  class CPopUpMenu :CGameObject
     public override void destroy()
     {
         base.destroy();
+
+        mButtonPlay.destroy();
+        mButtonPlay = null;
         //mainMenu.destroy();
         //mainMenu = null;
         //tryAgain.destroy();

@@ -112,8 +112,8 @@ public class CLevelState : CGameState
 		mBulletManager = null;
 		mEnemyManager.destroy ();
 		mEnemyManager = null;
-        mTriggerManager.destroy();
-        mTriggerManager = null;
+        //mTriggerManager.destroy();
+        //mTriggerManager = null;
         mParticleManager.destroy();
         mParticleManager = null;
 

@@ -6,7 +6,7 @@ public class CWinState : CGameState
     private CText mText;
     
     private int currentLvl;
-
+    private CPopUpMenu aPopup;
     
 
     public CWinState(int aLvl)
@@ -15,11 +15,13 @@ public class CWinState : CGameState
         mText.setXY(400, 400);
         mText.setColor(Color.white);
         currentLvl = aLvl;
+        aPopup = new CPopUpMenu(aLvl);
    }
 
     public override void init()
     {
-        base.init();     
+        base.init();  
+           
 
     }
 
@@ -27,6 +29,7 @@ public class CWinState : CGameState
     {
         base.update();
         mText.update();
+        aPopup.update();
       
        
 
@@ -36,6 +39,7 @@ public class CWinState : CGameState
     {
         base.render();
         mText.render();
+        aPopup.render();
     }
 
     public override void destroy()
@@ -43,6 +47,8 @@ public class CWinState : CGameState
         base.destroy();
         mText.destroy();
         mText = null;
+        aPopup.destroy();
+        aPopup = null;
        
 
     }

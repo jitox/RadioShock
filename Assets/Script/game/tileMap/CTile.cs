@@ -87,7 +87,7 @@ public class CTile : CSprite
 
 	override public void destroy()
 	{
-        
+        base.destroy();        
 	}
 
 	public bool isWalkable()
