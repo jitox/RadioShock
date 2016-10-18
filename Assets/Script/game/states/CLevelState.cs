@@ -76,7 +76,7 @@ public class CLevelState : CGameState
         mParticleManager.update();
 		mCamera.update ();
 
-        if (mPlayer.getWin())
+        if (!mPlayer.getWin())
         {
             CGame.inst().setState(new CWinState(currentLvl));            
             return;
@@ -119,8 +119,8 @@ public class CLevelState : CGameState
 
 		mMap.destroy ();
 		mMap = null;
-		mCamera.destroy ();
-		mCamera = null;
+		//mCamera.destroy ();
+		//mCamera = null;
 	}
 
 
