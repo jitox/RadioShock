@@ -22,18 +22,28 @@ public class CTileMap
     public static int[][] LEVEL;
 
     // Cantidad de tiles que hay.
-    private const int NUM_TILES = 16;
+    private const int NUM_TILES = 17;
 
     public Color actualColor;
+    public int actualColorIndex;
+    private List<Color> colorList;
 
     // Array con los sprites de los tiles.
     private Sprite[] mTiles;
 
 
     public CTileMap(int aLevel)
-	{
-		registerSingleton ();
-        actualColor = Color.red;
+    {
+        registerSingleton();
+        actualColorIndex = 0;
+        colorList = new List<Color>()
+            {Color.red,
+            Color.magenta,
+            Color.cyan,
+            Color.green,
+            Color.yellow};
+        actualColor = colorList[actualColorIndex];
+
         LEVEL = CMapLevels.getMapLevel(aLevel);
 
 
@@ -59,6 +69,8 @@ public class CTileMap
         mTiles[13] = Resources.Load<Sprite>("Sprites/tiles/tile013");
         mTiles[14] = Resources.Load<Sprite>("Sprites/tiles/tile014");
         mTiles[15] = Resources.Load<Sprite>("Sprites/tiles/tile015");
+        mTiles[16] = Resources.Load<Sprite>("Sprites/tiles/tile016");
+
 
         loadLevel();
         
@@ -198,20 +210,25 @@ public class CTileMap
     }
     public void ChangeColor()
     {
+        int index = CMath.randomIntBetween(0, colorList.Count - 1);
+        while (index == actualColorIndex)
+        {
+            index = CMath.randomIntBetween(0, colorList.Count - 1);
+        }
+        actualColorIndex = index;
+        actualColor = colorList[actualColorIndex];
         
-        if (actualColor == Color.red)
-        {
-            actualColor = Color.magenta;
-        }
-        else if (actualColor == Color.magenta)
-        {
-            actualColor = Color.cyan;
-        }
-        else if (actualColor == Color.cyan)
-        {
-            actualColor = Color.red;
-        }
-
-        
+        //if (actualColor == Color.red)
+        //{
+        //    actualColor = Color.magenta;
+        //}
+        //else if (actualColor == Color.magenta)
+        //{
+        //    actualColor = Color.cyan;
+        //}
+        //else if (actualColor == Color.cyan)
+        //{
+        //    actualColor = Color.red;
+        //}
     }
 }

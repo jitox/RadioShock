@@ -85,7 +85,18 @@ public class CPlayerNew : CAnimatedSprite
        
         if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.inst().MAP_HEIGHT * CTileMap.TILE_HEIGHT)
         {
-            setState(STATE_DIE);
+            // I copied this fron the STATE_DIE so it does not wait for the animation. too lazy for a variable.
+            CTriggerManager.inst().resetActive();
+            JUMP_SPEED = 650;
+            setVelXY(SPEED, JUMP_SPEED);
+            setXY(0, 400);
+            //GRAVITY = 900;
+            setFlip(false);
+            midJump = false;
+            markToClearMap = true;
+            CParticleManager.inst().killEmAll();
+            setState(STATE_NORMAL);
+            (CGame.inst().getState() as CLevelState).mBackground.resetPos();
         }
 
         if (getState() != STATE_DIE)
@@ -191,6 +202,22 @@ public class CPlayerNew : CAnimatedSprite
                     setState(STATE_DIE);
                 }
                 jumpControl();
+                break;
+            case STATE_DIE:
+                if (isAnimationEnded())
+                {
+                    CTriggerManager.inst().resetActive();
+                    JUMP_SPEED = 650;
+                    setVelXY(SPEED, JUMP_SPEED);
+                    setXY(0, 400);
+                    //GRAVITY = 900;
+                    setFlip(false);
+                    midJump = false;
+                    markToClearMap = true;
+                    CParticleManager.inst().killEmAll();
+                    setState(STATE_NORMAL);
+                    (CGame.inst().getState() as CLevelState).mBackground.resetPos();
+                }
                 break;
             
         }
@@ -347,6 +374,7 @@ public class CPlayerNew : CAnimatedSprite
         {
 
             //initAnimation(2, 9, 10, true);
+            initAnimation(1, 8, 10, true);
             stopMove();
             midJump = false;
             if (firstPass) {
@@ -378,21 +406,23 @@ public class CPlayerNew : CAnimatedSprite
         else if (getState() == STATE_DIE)
         {
             //CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
-            CTriggerManager.inst().resetActive();
+
+            initAnimation(9, 16, 20, false);
             setVelXY(0, 0);
             setAccelY(0);
 
-            JUMP_SPEED = 650;
-            setVelXY(SPEED, JUMP_SPEED);
-            setXY(0, 400);
-            //GRAVITY = 900;
-            setFlip(false);
-            midJump = false;
-            markToClearMap = true;
-            CParticleManager.inst().killEmAll();
-            setState(STATE_NORMAL);
-            (CGame.inst().getState() as CLevelState).mBackground.resetPos();
-            
+            //CTriggerManager.inst().resetActive();
+            //JUMP_SPEED = 650;
+            //setVelXY(SPEED, JUMP_SPEED);
+            //setXY(0, 400);
+            ////GRAVITY = 900;
+            //setFlip(false);
+            //midJump = false;
+            //markToClearMap = true;
+            //CParticleManager.inst().killEmAll();
+            //setState(STATE_NORMAL);
+            //(CGame.inst().getState() as CLevelState).mBackground.resetPos();
+
 
         }
        
