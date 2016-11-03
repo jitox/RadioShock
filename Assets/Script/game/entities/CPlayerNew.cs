@@ -102,7 +102,7 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() != STATE_DIE)
         {
 
-            auxTrail = new CTrailParticle(getX(), getY());
+           // auxTrail = new CTrailParticle(getX(), getY());
 
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
@@ -407,10 +407,10 @@ public class CPlayerNew : CAnimatedSprite
         {
             //CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
 
-            initAnimation(9, 16, 20, false);
+            initAnimation(9, 15, 30, false);
             setVelXY(0, 0);
             setAccelY(0);
-
+            (CGame.inst().getState() as CLevelState).mBackground.stopMove();
             //CTriggerManager.inst().resetActive();
             //JUMP_SPEED = 650;
             //setVelXY(SPEED, JUMP_SPEED);
