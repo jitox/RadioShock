@@ -7,6 +7,7 @@ public class CPlayerNew : CAnimatedSprite
     private const int STATE_JUMPING = 2;
     private const int STATE_FALLING = 3;
     private const int STATE_DIE = 4;
+    private const int STATE_TODIE = 5;
     private bool midJump = false;
 
     private bool mWin = false;
@@ -47,6 +48,7 @@ public class CPlayerNew : CAnimatedSprite
     private bool markToClearMap = false;
     private bool firstPass;
     CTrailParticle auxTrail;
+    private float trailTime = 0;
 
     public CPlayerNew()
     {
@@ -101,8 +103,13 @@ public class CPlayerNew : CAnimatedSprite
 
         if (getState() != STATE_DIE)
         {
-
-           // auxTrail = new CTrailParticle(getX(), getY());
+            //trailTime += Time.deltaTime;
+            //if (trailTime > 0.1f)
+            //{
+            //    auxTrail = new CTrailParticle(getX(), getY());
+            //    trailTime = 0;
+            //}
+           
 
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
@@ -147,6 +154,10 @@ public class CPlayerNew : CAnimatedSprite
 
         switch (getState())
         {
+            case STATE_TODIE:
+                if(getTimeState()>0.05)
+                    setState(STATE_DIE);
+                break;
             case STATE_NORMAL:
                 //chequeo si tiene que caer
                 if (!checkFloor())
@@ -170,32 +181,52 @@ public class CPlayerNew : CAnimatedSprite
                 break;
 
             case STATE_FALLING:
-                if (checkFloor())
-                {
-                    if (checkFloorSpikes())
-                    {
-                        return;
-                    }
-                    setState(STATE_NORMAL);
-                }
-                jumpControl();           
+
+                if (checkFloorSpikes())
+                       {
+                            return;
+                       }
+                checkFloor();
+
+                    //if (checkFloor())
+                    //{
+                    //    if (checkFloorSpikes())
+                    //    {
+                    //        return;
+                    //    }
+                    //    setState(STATE_NORMAL);
+                    //}
+                    jumpControl();           
                 break;
             case STATE_JUMPING:
+                if (checkFloorSpikes())
+                {
+                    return;
+                }
                 if (checkFloor())
                 {
-                    if (checkFloorSpikes())
-                    {
-                        return;
-                    }
                     setState(STATE_NORMAL);
                 }
-                if (checkRoof())
+                //if (checkFloor())
+                //{
+                //    if (checkFloorSpikes())
+                //    {
+                //        return;
+                //    }
+                //    setState(STATE_NORMAL);
+                //}
+                if (checkRoofSpikes())
                 {
-                    if (checkRoofSpikes())
-                    {
-                        return;
-                    }
+                    return;
                 }
+                checkRoof();
+                //if (checkRoof())
+                //{
+                //    if (checkRoofSpikes())
+                //    {
+                //        return;
+                //    }
+                //}
 
                 if (checkRightWall())
                 {
@@ -232,7 +263,9 @@ public class CPlayerNew : CAnimatedSprite
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
             {
-                setState(STATE_DIE);
+                //setState(STATE_DIE);
+                
+                setState(STATE_TODIE);
                 return true;
             }
         }
@@ -241,7 +274,8 @@ public class CPlayerNew : CAnimatedSprite
             checkSpikes((int)getX(), (int)getY() - 1);
             if (tileTopLeft || tileTopRight)
             {
-                setState(STATE_DIE);
+                //setState(STATE_DIE);
+                setState(STATE_TODIE);
                 return true;
             }
         }
@@ -255,7 +289,7 @@ public class CPlayerNew : CAnimatedSprite
             checkSpikes((int)getX(), (int)getY() + 1);
             if (tileDownLeft || tileDownRight)
             {
-                setState(STATE_DIE);
+                setState(STATE_TODIE);
                 return true;
             }
         }
@@ -264,7 +298,7 @@ public class CPlayerNew : CAnimatedSprite
             checkSpikes((int)getX(), (int)getY() - 1);
             if (tileTopLeft || tileTopRight)
             {
-                setState(STATE_DIE);
+                setState(STATE_TODIE);
                 return true;
             }
         }
@@ -279,6 +313,7 @@ public class CPlayerNew : CAnimatedSprite
             checkPoints((int)getX(), (int)getY() + 1);
             if (!tileDownLeft || !tileDownRight)
             {
+                
                 setY((downTileY * CTileMap.TILE_HEIGHT) - PLAYER_HEIGHT);
                 setVelY(0);
                 return true;
@@ -424,6 +459,10 @@ public class CPlayerNew : CAnimatedSprite
             //(CGame.inst().getState() as CLevelState).mBackground.resetPos();
 
 
+        }
+        else if (getState() == STATE_TODIE)
+        {
+            setVelX(0);
         }
        
     }
