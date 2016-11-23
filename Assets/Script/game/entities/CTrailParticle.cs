@@ -10,28 +10,24 @@ class CTrailParticle:CSprite
 
     public CTrailParticle(float aX,float aY)
     {
-        //setXY(aX+20, aY+9+15);
-        setXY(aX+50, aY+50);
+        setXY(aX+20, aY+9+15);
         //setFrames(Resources.LoadAll<Sprite>("Sprites/trail/trail00"));
         //gotoAndStop(1);
-        setImage(Resources.Load<Sprite>("Sprites/trail/particula001"));
+        setImage(Resources.Load<Sprite>("Sprites/trail/trail00"));
         setSortingLayerName("PlayerTrail");
         setState(0);
         setName("TrailParticle");
         CParticleManager.inst().add(this);
-        setScale(0.5f);
-        mScale = 0.5f;
-        setAlpha(1.5f);
-        setVelX(-50);
+        mScale = 1;
 
     }
     public override void update()
     {
         base.update();
-        //setAlpha(getAlpha()-0.1f);
-        mScale -= 0.05f;
+        setAlpha(getAlpha()-0.1f);
+        mScale -= 0.1f;
         setScale(mScale);
-        if (mScale <= 0)
+        if (getAlpha() <= 0)
         {
             setDead(true);
         }
