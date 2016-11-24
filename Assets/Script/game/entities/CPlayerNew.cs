@@ -230,7 +230,7 @@ public class CPlayerNew : CAnimatedSprite
         if (JUMP_SPEED > 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
-            if (tileDownLeft || tileDownRight)
+            if (tileDownLeft && tileDownRight)
             {
                 setState(STATE_DIE);
                 return true;
@@ -239,7 +239,7 @@ public class CPlayerNew : CAnimatedSprite
         else
         {
             checkSpikes((int)getX(), (int)getY() - 1);
-            if (tileTopLeft || tileTopRight)
+            if (tileTopLeft && tileTopRight)
             {
                 setState(STATE_DIE);
                 return true;
@@ -253,7 +253,7 @@ public class CPlayerNew : CAnimatedSprite
         if (JUMP_SPEED < 0)
         {
             checkSpikes((int)getX(), (int)getY() + 1);
-            if (tileDownLeft || tileDownRight)
+            if (tileDownLeft && tileDownRight)
             {
                 setState(STATE_DIE);
                 return true;
@@ -262,7 +262,7 @@ public class CPlayerNew : CAnimatedSprite
         else
         {
             checkSpikes((int)getX(), (int)getY() - 1);
-            if (tileTopLeft || tileTopRight)
+            if (tileTopLeft && tileTopRight)
             {
                 setState(STATE_DIE);
                 return true;

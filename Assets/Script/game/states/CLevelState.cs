@@ -18,6 +18,8 @@ public class CLevelState : CGameState
 	private CCamera mCamera;
     private  int currentLvl;
 
+    private CButtonSprite mButtonHome;
+
     
 
 	public CLevelState(int aLevel)
@@ -42,21 +44,32 @@ public class CLevelState : CGameState
 		mCamera.setGameObjectToFollow (mPlayer);
 
         mBackground = new CBackgroundcs();
-	}
+
+        
+    }
 
 	override public void init()
 	{
 		base.init ();
 
-		//mBackground = new CSprite ();
-		//mBackground.setImage (Resources.Load<Sprite> ("Sprites/game_background"));
-		//mBackground.setXY (0, 0);
-		//mBackground.setSortingLayerName ("Background");
-		//mBackground.setName ("background");
+        //mBackground = new CSprite ();
+        //mBackground.setImage (Resources.Load<Sprite> ("Sprites/game_background"));
+        //mBackground.setXY (0, 0);
+        //mBackground.setSortingLayerName ("Background");
+        //mBackground.setName ("background");
 
-		
-		//eateCannons ();
-	}
+        mButtonHome = new CButtonSprite();
+        mButtonHome.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/InGame"));
+        mButtonHome.gotoAndStop(1);
+        mButtonHome.setXY(CGameConstants.SCREEN_WIDTH, 20);
+        mButtonHome.setWidth(100);
+        mButtonHome.setHeight(100);
+        mButtonHome.setSortingLayerName("UI");
+        mButtonHome.setName("button Home");
+        mButtonHome.setVisible(false);
+
+        //eateCannons ();
+    }
 
 	override public void update()
 	{
@@ -68,13 +81,24 @@ public class CLevelState : CGameState
 			return;
 		}
 
-		mBackground.update ();
+        mButtonHome.update();
+
+        mButtonHome.setXY(CGame.inst().getCamera().getX() + CGameConstants.SCREEN_WIDTH, 20);
+
+        mBackground.update ();
 		mPlayer.update ();
 		mBulletManager.update ();
 		mEnemyManager.update ();
 		mMap.update ();
         mParticleManager.update();
 		mCamera.update ();
+
+
+        if (mButtonHome.clicked())
+        {
+            CGame.inst().setState(new CMainMenuState());
+            return;
+        }
 
         if (mPlayer.getWin())
         {
@@ -93,8 +117,10 @@ public class CLevelState : CGameState
 		mEnemyManager.render ();
         mTriggerManager.render();
         mParticleManager.render();
-
+        
         mMap.render ();
+
+        mButtonHome.render();
 
 		mCamera.render ();
 	}
@@ -116,6 +142,9 @@ public class CLevelState : CGameState
         //mTriggerManager = null;
         mParticleManager.destroy();
         mParticleManager = null;
+
+        mButtonHome.destroy();
+        mButtonHome = null;
 
 		mMap.destroy ();
 		mMap = null;
