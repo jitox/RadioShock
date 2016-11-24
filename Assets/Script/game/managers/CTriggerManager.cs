@@ -60,10 +60,10 @@ public class CTriggerManager : CManager
 
     public override void destroy()
     {
-        for (int i = mArray.Count - 1; i >= 0; i--)
-        {
-            removeObjectWithIndex(i);
-        }
+        //for (int i = mArray.Count - 1; i >= 0; i--)
+        //{
+        //    removeObjectWithIndex(i);
+        //}
         mArray = null;
     }
 
@@ -71,7 +71,7 @@ public class CTriggerManager : CManager
     {
         if (aIndex < mArray.Count)
         {
-            mArray[aIndex].destroy();
+           // mArray[aIndex].destroy();
             mArray[aIndex] = null;
             mArray.RemoveAt(aIndex);
         }
@@ -84,4 +84,6 @@ public class CTriggerManager : CManager
             mArray[i].setActive(true);
         }
     }
+
+    
 }

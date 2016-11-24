@@ -33,7 +33,7 @@ public class CParticleManager:CManager
         }
         else
         {
-            throw new UnityException("ERROR: Cannot create another instance of singleton class CTriggerManager.");
+            throw new UnityException("ERROR: Cannot create another instance of singleton class CParticleManager.");
         }
     }
 

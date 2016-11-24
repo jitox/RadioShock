@@ -79,4 +79,18 @@ public class CButtonSprite : CAnimatedSprite
 
 		return false;
 	}
+
+    public bool clickedCameraDependant()
+    {
+        Vector3 mousePos = CMouse.getPos();
+
+        if (CMouse.release())
+        {
+            if (CMath.pointInRect(mousePos.x, mousePos.y, (getX() - CGame.inst().getCamera().getX()) - getWidth() / 2, getY() - getHeight() / 2, getWidth(), getHeight()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

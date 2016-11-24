@@ -9,6 +9,8 @@ public class CGame : MonoBehaviour
 	private CCamera mCamera;
 	private CPlayerNew mPlayer;
 	private CShip mShip;
+    private CTriggerManager mTriggerManager;
+    private CParticleManager mParticleManager;
     //Test commit
 	void Awake()
 	{
@@ -21,7 +23,8 @@ public class CGame : MonoBehaviour
 
 		CMouse.init();
 		CKeyboard.init ();
-
+        mTriggerManager = new CTriggerManager();
+        mParticleManager = new CParticleManager();
 		//setState(new CLevelState ());
 		setState(new CMainMenuState ());
 	}

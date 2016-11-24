@@ -16,6 +16,7 @@ public class CWinState : CGameState
         mText.setColor(Color.white);
         currentLvl = aLvl;
         aPopup = new CPopUpMenu(aLvl);
+        CGame.inst().getCamera().setX(0);
    }
 
     public override void init()

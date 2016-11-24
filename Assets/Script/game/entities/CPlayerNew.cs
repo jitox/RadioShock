@@ -233,6 +233,7 @@ public class CPlayerNew : CAnimatedSprite
             if (tileDownLeft && tileDownRight)
             {
                 setState(STATE_DIE);
+                setY(getY() + CTileMap.TILE_HEIGHT/2);
                 return true;
             }
         }
@@ -242,6 +243,7 @@ public class CPlayerNew : CAnimatedSprite
             if (tileTopLeft && tileTopRight)
             {
                 setState(STATE_DIE);
+                setY(getY() - CTileMap.TILE_HEIGHT/2 );
                 return true;
             }
         }

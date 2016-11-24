@@ -8,10 +8,7 @@ public class CLevelState : CGameState
 
 	private CBulletManager mBulletManager;
 	private CEnemyManager mEnemyManager;
-    private CTriggerManager mTriggerManager;
-    private CParticleManager mParticleManager;
-
-	public CBackgroundcs mBackground;
+    public CBackgroundcs mBackground;
 
 	private CTileMap mMap;
 
@@ -32,8 +29,8 @@ public class CLevelState : CGameState
 
 		mBulletManager = new CBulletManager ();
 		mEnemyManager = new CEnemyManager ();
-        mTriggerManager = new CTriggerManager();
-        mParticleManager = new CParticleManager();
+      
+       
 
         mMap = new CTileMap(currentLvl);
 
@@ -66,7 +63,7 @@ public class CLevelState : CGameState
         mButtonHome.setHeight(100);
         mButtonHome.setSortingLayerName("UI");
         mButtonHome.setName("button Home");
-        mButtonHome.setVisible(false);
+        mButtonHome.setVisible(true);
 
         //eateCannons ();
     }
@@ -90,7 +87,8 @@ public class CLevelState : CGameState
 		mBulletManager.update ();
 		mEnemyManager.update ();
 		mMap.update ();
-        mParticleManager.update();
+        CParticleManager.inst().update();
+        
 		mCamera.update ();
 
 
@@ -115,9 +113,9 @@ public class CLevelState : CGameState
 		mPlayer.render ();
 		mBulletManager.render ();
 		mEnemyManager.render ();
-        mTriggerManager.render();
-        mParticleManager.render();
         
+        
+        CParticleManager.inst().render();
         mMap.render ();
 
         mButtonHome.render();
@@ -138,10 +136,9 @@ public class CLevelState : CGameState
 		mBulletManager = null;
 		mEnemyManager.destroy ();
 		mEnemyManager = null;
-        //mTriggerManager.destroy();
-        //mTriggerManager = null;
-        mParticleManager.destroy();
-        mParticleManager = null;
+        CTriggerManager.inst().mArray.Clear();
+        CParticleManager.inst().mArray.Clear();
+       
 
         mButtonHome.destroy();
         mButtonHome = null;

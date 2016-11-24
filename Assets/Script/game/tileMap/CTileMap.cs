@@ -91,7 +91,8 @@ public class CTileMap
 		}
 		else 
 		{
-			throw new UnityException( "ERROR: Cannot create another instance of singleton class CTileMap.");
+            mInst = this;
+			//throw new UnityException( "ERROR: Cannot create another instance of singleton class CTileMap.");
 		}
 	}
 
