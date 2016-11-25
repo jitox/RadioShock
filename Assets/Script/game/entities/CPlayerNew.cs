@@ -11,12 +11,12 @@ public class CPlayerNew : CAnimatedSprite
 
     private bool mWin = false;
 
-    private const int SPEED = 600;
-    private int JUMP_SPEED = 750;
+    private const int SPEED = 700;
+    private int JUMP_SPEED = 900;
     //private int GRAVITY = 900;
     
-    private const int PLAYER_WIDTH = 105;
-    private const int PLAYER_HEIGHT = 105;
+    private const int PLAYER_WIDTH = 70;
+    private const int PLAYER_HEIGHT = 68;
 
     // Variables para chequeo de colisiones con los tiles.
     private bool tileTopLeft;
@@ -52,7 +52,7 @@ public class CPlayerNew : CAnimatedSprite
     {
         //setFrames(Resources.LoadAll<Sprite>("Sprites/player"));
         firstPass = true;
-        setFrames(Resources.LoadAll<Sprite>("Sprites/player/Chispita"));
+        setFrames(Resources.LoadAll<Sprite>("Sprites/player/Chispita70"));
         //gotoAndStop(1);
         initAnimation(1, 8, 10, true);
         setSortingLayerName("Player");
@@ -409,7 +409,7 @@ public class CPlayerNew : CAnimatedSprite
         {
             //CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
 
-            initAnimation(9, 15, 30, false);
+            initAnimation(9, 18, 30, false);
             setVelXY(0, 0);
             setAccelY(0);
             (CGame.inst().getState() as CLevelState).mBackground.stopMove();
