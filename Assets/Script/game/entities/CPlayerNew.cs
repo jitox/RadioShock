@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CPlayerNew : CAnimatedSprite
 {
-    private const int STATE_NORMAL = 0;
-    private const int STATE_JUMPING = 2;
-    private const int STATE_FALLING = 3;
-    private const int STATE_DIE = 4;
+    public const int STATE_NORMAL = 0;
+    public const int STATE_JUMPING = 2;
+    public const int STATE_FALLING = 3;
+    public const int STATE_DIE = 4;
     private bool midJump = false;
 
     private bool mWin = false;
@@ -58,7 +58,7 @@ public class CPlayerNew : CAnimatedSprite
         setSortingLayerName("Player");
         setName("Player");
         setVelXY(SPEED, JUMP_SPEED);
-        setXY(0, 400);
+        setXY(80, 400);
 
         setRegistration(REG_TOP_LEFT);
 
@@ -89,7 +89,7 @@ public class CPlayerNew : CAnimatedSprite
             CTriggerManager.inst().resetActive();
             JUMP_SPEED = 650;
             setVelXY(SPEED, JUMP_SPEED);
-            setXY(0, 400);
+            setXY(80, 400);
             //GRAVITY = 900;
             setFlip(false);
             midJump = false;
@@ -209,7 +209,7 @@ public class CPlayerNew : CAnimatedSprite
                     CTriggerManager.inst().resetActive();
                     JUMP_SPEED = 650;
                     setVelXY(SPEED, JUMP_SPEED);
-                    setXY(0, 400);
+                    setXY(80, 400);
                     //GRAVITY = 900;
                     setFlip(false);
                     midJump = false;

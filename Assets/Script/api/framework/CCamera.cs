@@ -150,7 +150,7 @@ public class CCamera : CGameObject
             mShakeDistY = 0;
         }
         
-        setX(mGameObjectToFollow.getX() - getWidth() / 2 + mShakeDistX);
+        setX(mGameObjectToFollow.getX()-80 - getWidth() / 2 + mShakeDistX);
         setY( getY() + mShakeDistY);
         //setY(mGameObjectToFollow.getY() - getHeight() / 2 + mShakeDistY);
     }

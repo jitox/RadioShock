@@ -78,7 +78,12 @@ public class CTileMap
 
     }
 
-	public static CTileMap inst()
+    public List<List<CTile>> getMap()
+    {
+        return mMap;
+    }
+
+    public static CTileMap inst()
 	{
 		return mInst;
 	}
@@ -121,18 +126,18 @@ public class CTileMap
 
 	public void render()
 	{
-		for (int y = 0; y < MAP_HEIGHT; y++) 
-		{
-			for (int x = 0; x < MAP_WIDTH; x++) 
-			{
+        for (int y = 0; y < MAP_HEIGHT; y++)
+        {
+            for (int x = 0; x < MAP_WIDTH; x++)
+            {
                 CCamera cam = CGame.inst().getCamera();
                 float camMin = cam.getX() - CCamera.WIDTH;
-                float camMax = cam.getX() + CCamera.WIDTH *2;
-                if (mMap[y][x].getX()>=camMin  && mMap[y][x].getX()<=camMax)
-				mMap [y] [x].render ();
-			}
-		}
-	}
+                float camMax = cam.getX() + CCamera.WIDTH * 2;
+                if (mMap[y][x].getX() >= camMin && mMap[y][x].getX() <= camMax)
+                    mMap[y][x].render();
+            }
+        }
+    }
 
 	public void destroy()
 	{
