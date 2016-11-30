@@ -77,7 +77,7 @@ public class CLevelState : CGameState
         mButtonHome.setHeight(100);
         mButtonHome.setSortingLayerName("UI");
         mButtonHome.setName("button Home");
-        mButtonHome.setVisible(true);
+        mButtonHome.setVisible(false);
 
         //eateCannons ();
     }
