@@ -122,7 +122,30 @@ public class CTileMap
 
 	public void update()
 	{
-	}
+        for (int y = 0; y < MAP_HEIGHT; y++)
+        {
+            for (int x = 0; x < MAP_WIDTH; x++)
+            {
+                CCamera cam = CGame.inst().getCamera();
+                float camMin = cam.getX() - 200;
+                float camMax = cam.getX() + CCamera.WIDTH * 2 + 200;
+                if (!(mMap[y][x].getX() >= camMin && mMap[y][x].getX() <= camMax))
+                {
+                    if (mMap[y][x].isVisible())
+                    {
+                        mMap[y][x].setVisible(false);
+                    }
+                }
+                else
+                {
+                    if (!mMap[y][x].isVisible())
+                    {
+                        mMap[y][x].setVisible(true);
+                    }
+                }
+            }
+        }
+    }
 
 	public void render()
 	{
