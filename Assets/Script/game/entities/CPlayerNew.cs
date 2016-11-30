@@ -102,7 +102,7 @@ public class CPlayerNew : CAnimatedSprite
         if (getState() != STATE_DIE)
         {
 
-           // auxTrail = new CTrailParticle(getX(), getY());
+          
 
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
@@ -148,6 +148,7 @@ public class CPlayerNew : CAnimatedSprite
         switch (getState())
         {
             case STATE_NORMAL:
+                 auxTrail = new CTrailParticle(getX(), getY());
                 //chequeo si tiene que caer
                 if (!checkFloor())
                 {
