@@ -67,7 +67,7 @@ public class CParticleManager:CManager
         {
             removeObjectWithIndex(i);
         }
-        mArray = null;
+        //mArray = null;
     }
 
     private void removeObjectWithIndex(int aIndex)

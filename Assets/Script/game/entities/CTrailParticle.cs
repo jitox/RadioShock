@@ -14,13 +14,13 @@ class CTrailParticle:CSprite
         //setFrames(Resources.LoadAll<Sprite>("Sprites/trail/trail00"));
         //gotoAndStop(1);
         //setImage(Resources.Load<Sprite>("Sprites/trail/trail00"));
-        setImage(Resources.Load<Sprite>("Sprites/trail/chispitaT"));
+        setImage(Resources.Load<Sprite>("Sprites/trail/particula003"));
         
         setSortingLayerName("PlayerTrail");
         setState(0);
         setName("TrailParticle");
         CParticleManager.inst().add(this);
-        mScale = 0.5f;
+        mScale = 0.6f;
         
 
     }
