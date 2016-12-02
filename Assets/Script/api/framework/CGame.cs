@@ -11,6 +11,7 @@ public class CGame : MonoBehaviour
 	private CShip mShip;
     private CTriggerManager mTriggerManager;
     private CParticleManager mParticleManager;
+    private CGameData mCgameData;
     //Test commit
 	void Awake()
 	{
@@ -25,6 +26,7 @@ public class CGame : MonoBehaviour
 		CKeyboard.init ();
         mTriggerManager = new CTriggerManager();
         mParticleManager = new CParticleManager();
+        mCgameData = new CGameData();
 		//setState(new CLevelState ());
 		setState(new CMainMenuState ());
 	}

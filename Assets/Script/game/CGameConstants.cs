@@ -8,4 +8,6 @@ public class CGameConstants
 
     public const int COLOR_RED = 1;
     public const int COLOR_BLUE = 2;
+
+    
 }

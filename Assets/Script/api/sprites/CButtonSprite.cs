@@ -4,10 +4,14 @@ using System.Collections;
 public class CButtonSprite : CAnimatedSprite
 {
 	public bool mIsMouseOver = false;
+    public bool isDisabled = false;
+    public string disabledButton;
 
 	public CButtonSprite()
 	{
 	}
+
+   
 
 	public override void destroy()
 	{
@@ -17,6 +21,7 @@ public class CButtonSprite : CAnimatedSprite
 	public override void update()
 	{
 		base.update ();
+        if (!isDisabled) { 
 
 		float scale = 1.0f;
 		int frame = 1;
@@ -49,8 +54,9 @@ public class CButtonSprite : CAnimatedSprite
 		setScale (scale);
 		gotoAndStop (frame);
 	}
+    }
 
-	public override void render()
+    public override void render()
 	{
 		base.render ();
 	}
@@ -68,7 +74,10 @@ public class CButtonSprite : CAnimatedSprite
 	public bool clicked()
 	{
 		Vector3 mousePos = CMouse.getPos ();
-
+        if (isDisabled)
+        {
+            return false;
+        }
 		if (CMouse.release ()) 
 		{
 			if (CMath.pointInRect (mousePos.x, mousePos.y, getX () - getWidth () / 2, getY () - getHeight () / 2, getWidth (), getHeight ()))
@@ -92,5 +101,11 @@ public class CButtonSprite : CAnimatedSprite
             }
         }
         return false;
+    }
+
+    public void setDisabled()
+    {
+        isDisabled = true;
+        gotoAndStop(3);
     }
 }

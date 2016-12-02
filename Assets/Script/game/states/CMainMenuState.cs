@@ -42,6 +42,7 @@ public class CMainMenuState : CGameState
 		mButtonPlay.setHeight (96);
 		mButtonPlay.setSortingLayerName ("UI");
 		mButtonPlay.setName ("button Level 1");
+        mButtonPlay.setDisabled();
 
         mButtonLevel2 = new CButtonSprite();
         mButtonLevel2.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/Level2"));
@@ -51,6 +52,12 @@ public class CMainMenuState : CGameState
         mButtonLevel2.setHeight(96);
         mButtonLevel2.setSortingLayerName("UI");
         mButtonLevel2.setName("button Level 1");
+        mButtonLevel2.render();
+        mButtonLevel2.setDisabled();
+
+        enableButtons();
+        
+        
     }
 	
 	override public void update()
@@ -129,7 +136,22 @@ public class CMainMenuState : CGameState
         mLoading.destroy();
         mLoading = null;
     }
-	
+
+    public void enableButtons()
+    {
+        int maxLvl = CGameData.inst().maxLevel;
+
+        if (maxLvl > 0)
+        {
+            mButtonPlay.isDisabled = false;
+        }
+        if (maxLvl > 1)
+        {
+            mButtonLevel2.isDisabled = false;
+        }
+    }
+
+
 }
 
 

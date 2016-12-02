@@ -109,10 +109,14 @@ public class CLevelState : CGameState
 
         if (mPlayer.getWin())
         {
+            if (currentLvl+1 > CGameData.inst().maxLevel)
+            {
+                CGameData.inst().maxLevel++;
+            }
             CGame.inst().setState(new CWinState(currentLvl));            
             return;
         }
-
+        
     }
 
     override public void render()
@@ -136,7 +140,8 @@ public class CLevelState : CGameState
 	// TODO: Al apretar Escape da error.
 	override public void destroy()
 	{
-		base.destroy ();
+        mCamera.setXY(0, 0);
+        base.destroy ();
 
 		mBackground.destroy ();
 		mBackground = null;
@@ -147,7 +152,7 @@ public class CLevelState : CGameState
 		mEnemyManager.destroy ();
 		mEnemyManager = null;
         CTriggerManager.inst().mArray.Clear();
-        CParticleManager.inst().mArray.Clear();
+        CParticleManager.inst().destroy();
 
 
         mButtonHome.destroy();
