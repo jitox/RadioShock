@@ -22,7 +22,7 @@ public class CTileMap
     public static int[][] LEVEL;
 
     // Cantidad de tiles que hay.
-    private const int NUM_TILES = 17;
+    private const int NUM_TILES = 18;
 
     public Color actualColor;
     public int actualColorIndex;
@@ -70,6 +70,8 @@ public class CTileMap
         mTiles[14] = Resources.Load<Sprite>("Sprites/tiles/tile014");
         mTiles[15] = Resources.Load<Sprite>("Sprites/tiles/tile015");
         mTiles[16] = Resources.Load<Sprite>("Sprites/tiles/tile016");
+        mTiles[17] = Resources.Load<Sprite>("Sprites/tiles/tile017");
+
 
 
         loadLevel();
@@ -154,8 +156,8 @@ public class CTileMap
             for (int x = 0; x < MAP_WIDTH; x++)
             {
                 CCamera cam = CGame.inst().getCamera();
-                float camMin = cam.getX() - CCamera.WIDTH;
-                float camMax = cam.getX() + CCamera.WIDTH * 2;
+                float camMin = cam.getX() - 200;
+                float camMax = cam.getX() + CCamera.WIDTH * 2 + 200;
                 if (mMap[y][x].getX() >= camMin && mMap[y][x].getX() <= camMax)
                     mMap[y][x].render();
             }

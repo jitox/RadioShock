@@ -50,6 +50,12 @@ public class CGameObject
 		mPos.x = aX;
 		mPos.y = aY;
 	}
+    public void setPos(CVector aPos)
+    {
+        mPos.x = aPos.x;
+        mPos.y = aPos.y;
+        mPos.z = aPos.z;
+    }
 	
 	public float getX()
 	{
@@ -65,6 +71,10 @@ public class CGameObject
 	{
 		return mPos.z;
 	}
+    public CVector getPos()
+    {
+        return mPos;
+    }
 	
 	public void setVelX(float aVelX)
 	{

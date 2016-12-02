@@ -4,6 +4,10 @@ using System.Collections;
 public class CMainMenuState : CGameState
 {
 	private CSprite mBackground;
+    private CSprite mLoading;
+    private bool mTransition = false;
+    private bool mIsTransitionDone = false;
+    private int mLevel;
 
 	private CButtonSprite mButtonPlay;
     private CButtonSprite mButtonLevel2;
@@ -23,7 +27,14 @@ public class CMainMenuState : CGameState
 		mBackground.setSortingLayerName("Background");
 		mBackground.setName ("background");
 
-		mButtonPlay = new CButtonSprite ();
+        mLoading = new CSprite();
+        mLoading.setImage(Resources.Load<Sprite>("Sprites/menu/loading"));
+        mLoading.setSortingLayerName("UI");
+        mLoading.setName("Loading");
+        mLoading.setXY(0, -1080);
+        mLoading.setVisible(false);
+
+        mButtonPlay = new CButtonSprite ();
 		mButtonPlay.setFrames (Resources.LoadAll<Sprite> ("Sprites/ui/button/Level1"));
 		mButtonPlay.gotoAndStop (1);
 		mButtonPlay.setXY (740, 670);
@@ -46,20 +57,52 @@ public class CMainMenuState : CGameState
 	{
 		base.update ();
 
-		mButtonPlay.update ();
+        mButtonPlay.update();
         mButtonLevel2.update();
+        mLoading.update();
 
-		if (mButtonPlay.clicked ()) 
-		{
-			CGame.inst ().setState(new CLevelState (1));
-			return;
-		}
-        if (mButtonLevel2.clicked())
+        if (mTransition)
         {
-            CGame.inst().setState(new CLevelState(2));
-            return;
+            if (!mLoading.isVisible())
+            {
+                mLoading.setVisible(true);
+                mLoading.setVelY(3000);
+            }
+            if (mLoading.getY() >= 0)
+            {
+                mLoading.setY(0);
+                mIsTransitionDone = true;
+            }
+            if (mIsTransitionDone)
+            {
+                if (mLevel == 1)
+                {
+                    CGame.inst().setState(new CLevelState(1));
+                    return;
+                }
+                else if (mLevel == 2)
+                {
+                    CGame.inst().setState(new CLevelState(2));
+                    return;
+                }
+            }
         }
-	}
+        else
+        {
+            if (mButtonPlay.clicked())
+            {
+                mTransition = true;
+                mLevel = 1;
+                return;
+            }
+            if (mButtonLevel2.clicked())
+            {
+                mTransition = true;
+                mLevel = 2;
+                return;
+            }
+        }
+    }
 	
 	override public void render()
 	{
@@ -67,6 +110,7 @@ public class CMainMenuState : CGameState
 
 		mButtonPlay.render ();
         mButtonLevel2.render();
+        mLoading.render();
 	}
 	
 	override public void destroy()
@@ -81,6 +125,9 @@ public class CMainMenuState : CGameState
 
         mButtonLevel2.destroy();
         mButtonLevel2 = null;
+
+        mLoading.destroy();
+        mLoading = null;
     }
 	
 }
