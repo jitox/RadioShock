@@ -143,7 +143,9 @@ public class CTileMap
                     if (!mMap[y][x].isVisible())
                     {
                         mMap[y][x].setVisible(true);
+                        
                     }
+                    mMap[y][x].update();
                 }
             }
         }

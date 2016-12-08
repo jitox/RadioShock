@@ -10,6 +10,7 @@ public class CLevelState : CGameState
 	private CBulletManager mBulletManager;
 	private CEnemyManager mEnemyManager;
     public CBackgroundcs mBackground;
+    public CSprite mWhiteScreen;
 
 	private CTileMap mMap;
 
@@ -30,7 +31,14 @@ public class CLevelState : CGameState
 
     public CLevelState(int aLevel)
 	{
-		mPlayer = new CPlayerNew ();
+        mWhiteScreen = new CSprite();
+        mWhiteScreen.setImage(Resources.Load<Sprite>("Sprites/whiteScreen"));
+        mWhiteScreen.setXY(0, 0);
+        mWhiteScreen.setSortingLayerName("Loading");
+        mWhiteScreen.setName("background");
+        mWhiteScreen.setVisible(false);
+        mWhiteScreen.render();
+        mPlayer = new CPlayerNew ();
 	    CGame.inst ().setPlayer (mPlayer);
         currentLvl = aLevel;
 		//mPlayer = new CShip ();
@@ -50,6 +58,8 @@ public class CLevelState : CGameState
 		mCamera.setGameObjectToFollow (mPlayer);
 
         mBackground = new CBackgroundcs();
+
+       
 
 
     }
@@ -97,8 +107,9 @@ public class CLevelState : CGameState
 		mEnemyManager.update ();
 		mMap.update ();
         CParticleManager.inst().update();
-        
-		mCamera.update ();
+        mWhiteScreen.update();
+
+        mCamera.update ();
 
 
         if (mButtonHome.clicked())
@@ -127,8 +138,9 @@ public class CLevelState : CGameState
 		mPlayer.render ();
 		mBulletManager.render ();
 		mEnemyManager.render ();
-        
-        
+        mWhiteScreen.render();
+
+
         CParticleManager.inst().render();
         mMap.render ();
 
@@ -154,7 +166,8 @@ public class CLevelState : CGameState
         CTriggerManager.inst().mArray.Clear();
         CParticleManager.inst().destroy();
 
-
+        mWhiteScreen.destroy();
+        mWhiteScreen = null;
         mButtonHome.destroy();
         mButtonHome = null;
 

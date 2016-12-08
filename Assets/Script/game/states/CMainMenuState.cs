@@ -29,7 +29,7 @@ public class CMainMenuState : CGameState
 
         mLoading = new CSprite();
         mLoading.setImage(Resources.Load<Sprite>("Sprites/menu/loading"));
-        mLoading.setSortingLayerName("UI");
+        mLoading.setSortingLayerName("Loading");
         mLoading.setName("Loading");
         mLoading.setXY(0, -1080);
         mLoading.setVisible(false);

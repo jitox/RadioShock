@@ -7,7 +7,8 @@ public class CWinState : CGameState
     
     private int currentLvl;
     private CPopUpMenu aPopup;
-    
+
+
 
     public CWinState(int aLvl)
     {
@@ -17,7 +18,9 @@ public class CWinState : CGameState
         currentLvl = aLvl;
         aPopup = new CPopUpMenu(aLvl);
         CGame.inst().getCamera().setX(0);
-   }
+
+        
+    }
 
     public override void init()
     {
@@ -31,8 +34,9 @@ public class CWinState : CGameState
         base.update();
         mText.update();
         aPopup.update();
-      
        
+
+
 
     }
 
@@ -41,6 +45,7 @@ public class CWinState : CGameState
         base.render();
         mText.render();
         aPopup.render();
+       
     }
 
     public override void destroy()
@@ -50,6 +55,7 @@ public class CWinState : CGameState
         mText = null;
         aPopup.destroy();
         aPopup = null;
+       
        
 
     }

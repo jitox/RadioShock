@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CTile : CSprite
+public class CTile : CAnimatedSprite
 {
 	// Tile index. Starting from 0.
 	private int mTileIndex;
@@ -15,10 +15,12 @@ public class CTile : CSprite
 	public CTile(int aX, int aY, int aTileIndex, Sprite aSprite)
 	{
 		setXY (aX, aY);
-		setTileIndex(aTileIndex);
+        setFrames(new Sprite[] { aSprite });
+        setTileIndex(aTileIndex);
 
-		setImage (aSprite);
+		//setImage (aSprite);
 		setSortingLayerName ("TileMap");
+
         
 	}
 
@@ -53,6 +55,12 @@ public class CTile : CSprite
         {
             mTriggerType = 0;
         }
+        if (aTileIndex == 14)
+        {
+            setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile"));
+            initAnimation(1, 3, 10, true);
+        }
+       
 	}
 
 	public int getTileIndex()

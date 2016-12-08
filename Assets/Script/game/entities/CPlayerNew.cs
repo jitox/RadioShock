@@ -48,6 +48,9 @@ public class CPlayerNew : CAnimatedSprite
     private bool firstPass;
     CTrailParticle auxTrail;
 
+    private int whiteCounter = 0;
+    private int maxCounter = 2;
+
     public CPlayerNew()
     {
         //setFrames(Resources.LoadAll<Sprite>("Sprites/player"));
@@ -77,10 +80,23 @@ public class CPlayerNew : CAnimatedSprite
 
     override public void update()
     {
+
         if (markToClearMap)
         {
             CGame.inst().getState().passAllMap();
             markToClearMap = false;
+        }
+        if ((CGame.inst().getState() as CLevelState).mWhiteScreen.isVisible())
+        {
+            if (whiteCounter < maxCounter)
+            {
+                whiteCounter++;
+            }else
+            {
+                (CGame.inst().getState() as CLevelState).mWhiteScreen.setVisible(false);
+                whiteCounter = 0;
+            }
+            
         }
        
         if (getY() + PLAYER_HEIGHT < 0 || getY() > CTileMap.inst().MAP_HEIGHT * CTileMap.TILE_HEIGHT)
@@ -207,6 +223,9 @@ public class CPlayerNew : CAnimatedSprite
             case STATE_DIE:
                 if (isAnimationEnded())
                 {
+                    //(CGame.inst().getState() as CLevelState).mWhiteScreen.setX(0);
+                    (CGame.inst().getState() as CLevelState).mWhiteScreen.setVisible(true);
+                    (CGame.inst().getState() as CLevelState).mWhiteScreen.render();
                     CTriggerManager.inst().resetActive();
                     JUMP_SPEED = 650;
                     setVelXY(SPEED, JUMP_SPEED);
@@ -218,6 +237,7 @@ public class CPlayerNew : CAnimatedSprite
                     CParticleManager.inst().killEmAll();
                     setState(STATE_NORMAL);
                     (CGame.inst().getState() as CLevelState).mBackground.resetPos();
+                   
                 }
                 break;
             
@@ -375,7 +395,11 @@ public class CPlayerNew : CAnimatedSprite
 
         if (getState() == STATE_NORMAL)
         {
-
+            if (!firstPass)
+            {
+               // (CGame.inst().getState() as CLevelState).mWhiteScreen.setVisible(false);
+            }
+            
             //initAnimation(2, 9, 10, true);
             initAnimation(1, 8, 10, true);
             stopMove();
@@ -392,6 +416,8 @@ public class CPlayerNew : CAnimatedSprite
             //initAnimation(10, 17, 10, false);
             //setVelY (JUMP_SPEED);
             //GRAVITY *= -1;
+            (CGame.inst().getState() as CLevelState).mWhiteScreen.setVisible(false);
+            (CGame.inst().getState() as CLevelState).mWhiteScreen.render();
             JUMP_SPEED *= -1;
             setVelY(JUMP_SPEED);
             setFlip(!getFlip());
@@ -409,7 +435,7 @@ public class CPlayerNew : CAnimatedSprite
         else if (getState() == STATE_DIE)
         {
             //CGame.inst().getCamera().initShake(true, 2.3f, 2.8f);
-
+          
             initAnimation(9, 18, 30, false);
             setVelXY(0, 0);
             setAccelY(0);
