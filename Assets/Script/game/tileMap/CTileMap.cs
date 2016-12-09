@@ -22,7 +22,7 @@ public class CTileMap
     public static int[][] LEVEL;
 
     // Cantidad de tiles que hay.
-    private const int NUM_TILES = 18;
+    private const int NUM_TILES = 23;
 
     public Color actualColor;
     public int actualColorIndex;
@@ -71,6 +71,11 @@ public class CTileMap
         mTiles[15] = Resources.Load<Sprite>("Sprites/tiles/tile015");
         mTiles[16] = Resources.Load<Sprite>("Sprites/tiles/tile016");
         mTiles[17] = Resources.Load<Sprite>("Sprites/tiles/tile017");
+        mTiles[18] = Resources.Load<Sprite>("Sprites/tiles/tile018");
+        mTiles[19] = Resources.Load<Sprite>("Sprites/tiles/tile019");
+        mTiles[20] = Resources.Load<Sprite>("Sprites/tiles/tile020");
+        mTiles[21] = Resources.Load<Sprite>("Sprites/tiles/tile021");
+        mTiles[22] = Resources.Load<Sprite>("Sprites/tiles/tile022");
 
 
 

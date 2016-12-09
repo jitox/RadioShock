@@ -20,7 +20,7 @@ public class CTile : CAnimatedSprite
 
 		//setImage (aSprite);
 		setSortingLayerName ("TileMap");
-
+        setName("Tile " + aTileIndex.ToString());
         
 	}
 
@@ -55,11 +55,28 @@ public class CTile : CAnimatedSprite
         {
             mTriggerType = 0;
         }
-        if (aTileIndex == 14)
+        switch (aTileIndex)
         {
-            setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile"));
-            initAnimation(1, 3, 10, true);
+            case 14:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile14"));
+                initAnimation(1, 3, 10, true);
+                break;
+            case 15:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile15"));
+                initAnimation(1, 3, 10, true);
+                break;
+            case 3:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile03"));
+                initAnimation(1, 3, 10, true);
+                break;
+            case 5:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile05"));
+                initAnimation(1, 3, 10, true);
+                break;
+            default:
+                break;
         }
+        
        
 	}
 
