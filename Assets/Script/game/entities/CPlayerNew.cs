@@ -48,6 +48,9 @@ public class CPlayerNew : CAnimatedSprite
     private bool firstPass;
     CTrailParticle auxTrail;
 
+    private float timeSinceTrail = 0;
+    private float timeBetweenTail = 0.15f;
+
     private int whiteCounter = 0;
     private int maxCounter = 2;
 
@@ -117,8 +120,9 @@ public class CPlayerNew : CAnimatedSprite
 
         if (getState() != STATE_DIE)
         {
+            createTrail();
 
-          
+
 
             checkTriggers((int)getX(), (int)getY());
             if ((triggerDownLeft == 1 && triggerDownLeftActive) || (triggerDownRight == 1 && triggerDownRightActive) || (triggerTopLeft == 1 && triggerTopLeftActive) || (triggerTopRight == 1 && triggerTopRightActive))
@@ -164,7 +168,8 @@ public class CPlayerNew : CAnimatedSprite
         switch (getState())
         {
             case STATE_NORMAL:
-                 auxTrail = new CTrailParticle(getX(), getY());
+                createTrail();
+                 
                 //chequeo si tiene que caer
                 if (!checkFloor())
                 {
@@ -440,6 +445,7 @@ public class CPlayerNew : CAnimatedSprite
             setVelXY(0, 0);
             setAccelY(0);
             (CGame.inst().getState() as CLevelState).mBackground.stopMove();
+            SoundList.instance.playDestruccion1();
             //CTriggerManager.inst().resetActive();
             //JUMP_SPEED = 650;
             //setVelXY(SPEED, JUMP_SPEED);
@@ -529,6 +535,17 @@ public class CPlayerNew : CAnimatedSprite
     public bool getWin()
     {
         return mWin;
+    }
+
+    public void createTrail()
+    {
+        timeSinceTrail += Time.deltaTime;
+        if (timeSinceTrail> timeBetweenTail)
+        {
+            auxTrail = new CTrailParticle(getX(), getY());
+            timeSinceTrail = 0;
+        }
+        
     }
 
 }

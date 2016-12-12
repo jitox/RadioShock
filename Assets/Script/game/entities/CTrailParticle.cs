@@ -24,8 +24,12 @@ class CTrailParticle:CSprite
         setState(0);
         setName("TrailParticle");
         CParticleManager.inst().add(this);
-        mScale = 0.6f;
-
+        mScale = 0.2f;
+        setVelX(-300);
+        setAlpha(5f);
+        setVelY(CMath.randomFloatBetween(-100, 100));
+        
+        
         //mUnaffectedY = getY();
     }
     public override void update()
@@ -33,7 +37,7 @@ class CTrailParticle:CSprite
         base.update();
         //mUnaffectedY = getY() - Mathf.Sin(CMath.degToRad(mAuxAngle)) * mMaxHeight;
         setAlpha(getAlpha()-0.1f);
-        mScale -= 0.1f;
+        //mScale -= 0.1f;
         setScale(mScale);
         if (getAlpha() <= 0 | mScale<0)
         {
