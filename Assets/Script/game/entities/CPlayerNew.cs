@@ -49,7 +49,7 @@ public class CPlayerNew : CAnimatedSprite
     CTrailParticle auxTrail;
 
     private float timeSinceTrail = 0;
-    private float timeBetweenTail = 0.15f;
+    private float timeBetweenTail = 0.07f;
 
     private int whiteCounter = 0;
     private int maxCounter = 2;
@@ -120,7 +120,7 @@ public class CPlayerNew : CAnimatedSprite
 
         if (getState() != STATE_DIE)
         {
-            createTrail();
+            //createTrail();
 
 
 

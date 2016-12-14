@@ -85,6 +85,7 @@ public  class CPopUpMenu :CGameObject
             }
             if (mIsTransitionDone)
             {
+                SoundList.instance.stopMusic();
                 switch (nextState)
                 {
                     case MAIN_MENU:
