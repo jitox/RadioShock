@@ -57,7 +57,7 @@ public class CMainMenuState : CGameState
 
         enableButtons();
         
-        
+
     }
 	
 	override public void update()

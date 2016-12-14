@@ -58,7 +58,7 @@ public class CLevelState : CGameState
 		mCamera.setGameObjectToFollow (mPlayer);
 
         mBackground = new CBackgroundcs();
-
+        SoundList.instance.playLevelMusic();
        
 
 
@@ -94,7 +94,8 @@ public class CLevelState : CGameState
 		if (CKeyboard.firstPress (CKeyboard.ESCAPE)) 
 		{
 			CGame.inst().setState(new CMainMenuState());
-			return;
+            SoundList.instance.stopMusic();
+            return;
 		}
 
         mButtonHome.update();
@@ -152,6 +153,7 @@ public class CLevelState : CGameState
 	// TODO: Al apretar Escape da error.
 	override public void destroy()
 	{
+        
         mCamera.setXY(0, 0);
         base.destroy ();
 

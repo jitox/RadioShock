@@ -12,9 +12,9 @@ public class CWinState : CGameState
 
     public CWinState(int aLvl)
     {
-        mText = new CText("YOU WIN!", CText.alignment.TOP_CENTER, 60);
-        mText.setXY(400, 400);
-        mText.setColor(Color.white);
+        //mText = new CText("YOU WIN!", CText.alignment.TOP_CENTER, 60);
+        //mText.setXY(400, 400);
+        //mText.setColor(Color.white);
         currentLvl = aLvl;
         aPopup = new CPopUpMenu(aLvl);
         CGame.inst().getCamera().setX(0);
@@ -32,7 +32,7 @@ public class CWinState : CGameState
     public override void update()
     {
         base.update();
-        mText.update();
+        //mText.update();
         aPopup.update();
        
 
@@ -43,16 +43,16 @@ public class CWinState : CGameState
     public override void render()
     {
         base.render();
-        mText.render();
+       // mText.render();
         aPopup.render();
        
     }
 
     public override void destroy()
     {
+        
         base.destroy();
-        mText.destroy();
-        mText = null;
+       
         aPopup.destroy();
         aPopup = null;
        

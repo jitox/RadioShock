@@ -8,8 +8,7 @@ public class SoundList : MonoBehaviour
     public static SoundList instance = null;
     public AudioSource musicSource;
     public AudioClip levelMusic;
-    public AudioClip destruccion1;
-   
+    public AudioClip destruccion1;  
     
    
 
