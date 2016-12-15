@@ -30,27 +30,27 @@ public  class CPopUpMenu :CGameObject
         //tryAgain.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/popUpMenu/Again"));
         tryAgain.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/popUpMenu/Again"));
         tryAgain.gotoAndStop(1);
-        tryAgain.setXY(CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2);
-        tryAgain.setWidth(320);
-        tryAgain.setHeight(96);
+        tryAgain.setXY(600, CGameConstants.SCREEN_HEIGHT / 2 + 300);
+        tryAgain.setWidth(100);
+        tryAgain.setHeight(100);
         tryAgain.setSortingLayerName("UI");
         tryAgain.setName("button Try Again");
 
         mainMenu = new CButtonSprite();
         mainMenu.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/popUpMenu/mainMenu"));
         mainMenu.gotoAndStop(2);
-        mainMenu.setXY(CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2 + 200);
-        mainMenu.setWidth(320);
-        mainMenu.setHeight(96);
+        mainMenu.setXY(800, CGameConstants.SCREEN_HEIGHT / 2 + 300);
+        mainMenu.setWidth(100);
+        mainMenu.setHeight(100);
         mainMenu.setSortingLayerName("UI");
         mainMenu.setName("button Main menu");
 
         nextLvl = new CButtonSprite();
         nextLvl.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/popUpMenu/nextlevl"));
         nextLvl.gotoAndStop(3);
-        nextLvl.setXY(CGameConstants.SCREEN_WIDTH / 2, CGameConstants.SCREEN_HEIGHT / 2 + 400);
-        nextLvl.setWidth(320);
-        nextLvl.setHeight(96);
+        nextLvl.setXY(1000, CGameConstants.SCREEN_HEIGHT / 2 + 300);
+        nextLvl.setWidth(100);
+        nextLvl.setHeight(100);
         nextLvl.setSortingLayerName("UI");
         nextLvl.setName("button Next level");
 

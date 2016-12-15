@@ -89,6 +89,14 @@ public class CTile : CAnimatedSprite
                 setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile16"));
                 initAnimation(1, 3, 10, true);
                 break;
+            case 10:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile10"));
+                initAnimation(1, 4, 8, true);
+                break;
+            case 11:
+                setFrames(Resources.LoadAll<Sprite>("Sprites/tiles/AnimatedTile11"));
+                initAnimation(1, 4, 8, true);
+                break;
             default:
                 break;
         }

@@ -37,7 +37,7 @@ public class CMainMenuState : CGameState
         mButtonPlay = new CButtonSprite ();
 		mButtonPlay.setFrames (Resources.LoadAll<Sprite> ("Sprites/ui/button/Level1"));
 		mButtonPlay.gotoAndStop (1);
-		mButtonPlay.setXY (740, 670);
+		mButtonPlay.setXY (800, 670);
 		mButtonPlay.setWidth (320);
 		mButtonPlay.setHeight (96);
 		mButtonPlay.setSortingLayerName ("UI");
@@ -47,7 +47,7 @@ public class CMainMenuState : CGameState
         mButtonLevel2 = new CButtonSprite();
         mButtonLevel2.setFrames(Resources.LoadAll<Sprite>("Sprites/ui/button/Level2"));
         mButtonLevel2.gotoAndStop(1);
-        mButtonLevel2.setXY(740, 790);
+        mButtonLevel2.setXY(800, 790);
         mButtonLevel2.setWidth(320);
         mButtonLevel2.setHeight(96);
         mButtonLevel2.setSortingLayerName("UI");
