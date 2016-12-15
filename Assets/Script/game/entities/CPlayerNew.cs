@@ -49,7 +49,7 @@ public class CPlayerNew : CAnimatedSprite
     CTrailParticle auxTrail;
 
     private float timeSinceTrail = 0;
-    private float timeBetweenTail = 0.07f;
+    private float timeBetweenTail = 0.05f;
 
     private int whiteCounter = 0;
     private int maxCounter = 2;
@@ -120,7 +120,11 @@ public class CPlayerNew : CAnimatedSprite
 
         if (getState() != STATE_DIE)
         {
-            //createTrail();
+            if (!midJump)
+            {
+                createTrail();
+            }
+            
 
 
 
@@ -168,7 +172,7 @@ public class CPlayerNew : CAnimatedSprite
         switch (getState())
         {
             case STATE_NORMAL:
-                createTrail();
+                //createTrail();
                  
                 //chequeo si tiene que caer
                 if (!checkFloor())

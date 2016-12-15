@@ -28,7 +28,7 @@ class CTrailParticle:CSprite
         setVelX(-300);
         setAlpha(5f);
         setVelY(CMath.randomFloatBetween(-100, 100));
-        
+        setRotation(CMath.randomIntBetween(0, 360));
         
         //mUnaffectedY = getY();
     }
