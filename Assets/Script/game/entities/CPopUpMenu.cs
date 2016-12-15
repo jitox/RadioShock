@@ -92,6 +92,11 @@ public  class CPopUpMenu :CGameObject
                         CGame.inst().setState(new CMainMenuState());
                         break;
                     case NEXT_LVL:
+                        if(currentLvl+1> 2)
+                        {
+                            CGame.inst().setState(new CMainMenuState());
+                            break;
+                        }
                         CGame.inst().setState(new CLevelState(currentLvl + 1));
                         break;
                     case TRY_AGAIN:
